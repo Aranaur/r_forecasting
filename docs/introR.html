@@ -393,13 +393,15 @@
 <span class="header-section-number">1.4</span> Типи даних<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B8%D0%BF%D0%B8-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
 </h2>
 <hr>
-<p>Інформація зберігається в різних структурах даних. Це може бути число, текст, булева змінна тощо.</p>
-<p>Один з найпопулярніших варіантів збереження даних — це <strong>числовий формат</strong>. В мові програмування R для нього є окремий клас — <strong>numeric</strong>. При цьому існує три типи numeric:</p>
+<p>Інформація зберігається в різних типах даних. Це може бути число, текст, булева змінна тощо.</p>
 <ol style="list-style-type: decimal">
+<li>Один з найпопулярніших варіантів збереження даних — це <strong>числовий формат</strong>. В мові програмування R для нього є окремий клас — <strong>numeric</strong>. При цьому існує три типи numeric:</li>
+</ol>
+<ul>
 <li>Цілі - <strong>integer</strong>.</li>
 <li>Дробові - <strong>double</strong>.</li>
 <li>Комплексні - <strong>complex</strong>.</li>
-</ol>
+</ul>
 <p>В більшості випадків R буде сам конвертувати числа в потрібний формат. Але якщо необхідно задати конкретний тип числа, то можна використати функції <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code>, <code><a href="https://rdrr.io/r/base/double.html">as.double()</a></code> та <code><a href="https://rdrr.io/r/base/complex.html">as.complex()</a></code>.</p>
 <blockquote>
 <p>В мові програмування R досить багато функцій, які починаються на <code>as.</code>, які переводять об’єкт до конкретного класу. Іншими словами просить читати дані в середені дужок у відповідному форматі.</p>
@@ -414,12 +416,17 @@
 <blockquote>
 <p>Функції, що починаються на <code>is.</code> перевіряють, чи належить об’єкт до обраного класу.</p>
 </blockquote>
-<p>Для роботи з <strong>текстовими даними</strong> є клас <strong>character</strong>. Вони записуються в лапках, при цьому можна використовувати як подвійні <code>"</code> так і одинарні <code>'</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Для роботи з <strong>текстовими даними</strong> є клас <strong>character</strong>. Вони записуються в лапках, при цьому можна використовувати як подвійні <code>"</code> так і одинарні <code>'</code>.</li>
+</ol>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="st">"Ash nazg durbatulûk, ash nazg gimbatul,
              ash nazg thrakatulûk, agh burzum-ishi krimpatul."</span><span class="op">)</span>
 <span class="co">## [1] TRUE</span></code></pre></div>
-<p><strong>Логічні (logical) данні</strong> - це тип даних які приймають лише значення <code>TRUE</code> або <code>FALSE</code>. Ми з ними вже зустрічалися коли використовували оператори порівняння.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>
+<strong>Логічні (logical) данні</strong> - це тип даних які приймають лише значення <code>TRUE</code> або <code>FALSE</code>. Ми з ними вже зустрічалися коли використовували оператори порівняння.</li>
+</ol>
 <p>Для перевірки типу даних використовується функція <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
