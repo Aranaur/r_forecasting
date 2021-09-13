@@ -512,7 +512,7 @@ my_list[['gendalf']]
 Нарешті ми перейшли до найголовнішого - **дата фрейми (data frames)**. Саме з такою структурою даних працюють найчастіше. Головною особливістю їх є те, що різні стовпчики можуть містити різний тип даних (але їх довжина має бути однаковою).
 Для створення дата фрейму використовується функція `data.frame()`.
 ```{r eval=FALSE}
-my_df <- data.frame(name = c("Frodo", "Eowyn", "Legolas", "Galadriel"),
+my_df <- data.frame(name = c("Frodo", "Eowyn", "Legolas", "Arwen"),
                     sex = c("male", "female", "male", "female"),
                     age = c(51, 24, 2931, 2700),
                     one_ring = c(TRUE, FALSE, FALSE, FALSE))
@@ -520,7 +520,7 @@ my_df
 ```
 
 ```{r echo=FALSE}
-my_df <- data.frame(name = c("Frodo", "Eowyn", "Legolas", "Galadriel"),
+my_df <- data.frame(name = c("Frodo", "Eowyn", "Legolas", "Arwen"),
                     sex = c("male", "female", "male", "female"),
                     age = c(51, 24, 2931, 2700),
                     one_ring = c(TRUE, FALSE, FALSE, FALSE))
