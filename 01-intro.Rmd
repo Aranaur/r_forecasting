@@ -43,6 +43,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.wid
 Перша належати до самої мови програмування і не буде використовуватись в роботі, друга відноситься до RStudio і саме вона нам потрібна.
 
 Після першого запуску RStudio ви побачите інтерфейс на рисунку \@ref(fig:rstudio1)
+
 ```{r rstudio1, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Базовий інтерфейс RStudio"}
 knitr::include_graphics("docs/images/rstudio_01.png")
 ```
@@ -55,7 +56,8 @@ knitr::include_graphics("docs/images/rstudio_02.png")
 
 Після чого, з’явиться додаткове вікно скрипту, де можна писати код, зберігати його та повертатися до нього за потреби.
 
-Розберімо отриманий інтерфейс:
+Розберімо отриманий інтерфейс (рис. \@ref(fig:rstudio3))
+
 ```{r rstudio3, out.width = "100%", fig.align='center', echo = FALSE, fig.cap = "Інтерфейс RStudio"}
 knitr::include_graphics("docs/images/rstudio_03.png")
 ```
@@ -583,15 +585,17 @@ knitr::include_graphics("docs/images/CRAN.png")
 install.packages("vroom")
 ```
 
-Інший спосіб встановлення пакетів - через окреме меню **Tools -> Install Packages** рис(\@ref(fig:002))
+Інший спосіб встановлення пакетів - через окреме меню **Tools -> Install Packages** (рис.\@ref(fig:002))
 ```{r 002, echo=FALSE, out.width="45%", fig.cap = "Меню встановлення пакетів в RStudio"}
 knitr::include_graphics("docs/images/002_install_pack.png")
 ```
 Або через кнопку в розділі **Packages** (рис. \@ref(fig:003))
+
 ```{r 003, echo=FALSE, out.width="60%",  fig.cap = "Кнопка встановлення пакетів"}
 knitr::include_graphics("docs/images/003_install_pack.png")
 ```
 Після чого з'явиться меню (рис. \@ref(fig:004)) в якому можна вказати назву потрібного пакету. Бажано залишити галочку **"install dependencies"**, оскільки деякі пакети мають залежність від інших пакетів і їх також слід встановити. Може статися ситуація, коли завантажуючи один пакет разом з ним буде додатково встановлено ще десятки інших.
+
 ```{r 004, echo=FALSE, out.width="60%", fig.cap = "Меню встановлення пакетів"}
 knitr::include_graphics("docs/images/004_install_pack.png")
 ```
