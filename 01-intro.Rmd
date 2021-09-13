@@ -600,7 +600,7 @@ knitr::include_graphics("docs/images/004_install_pack.png")
 ```{r eval=FALSE}
 devtools::install_github('yihui/xaringan')
 ```
-Посилання `yihui/xaringan` --- це адреса репозитарію в [GitHub]("https://github.com/yihui/xaringan")
+Посилання `yihui/xaringan` --- це адреса пакету в [GitHub](https://github.com/yihui/xaringan)
 
 ## Завантаження даних в R
 ***
