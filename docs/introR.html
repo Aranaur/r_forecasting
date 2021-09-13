@@ -803,12 +803,71 @@ R працює з багатьма структурами даних: векто
 <span class="header-section-number">1.6</span> Пакети в R<a class="anchor" aria-label="anchor" href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8-%D0%B2-r"><i class="fas fa-link"></i></a>
 </h2>
 <hr>
+<p>R - мова програмування з дуже широкими можливостями. Однак рано чи пізно ми почнемо стикатися з задачами, які потребуватимуть додаткових можливостей. Ці можливості можна розширити за допомогою додаткових <strong>пакетів (packages)</strong>.</p>
+<p>В більшості випадків основним змістом пакетів є набір додаткових функцій, даних або нових структур даних.</p>
+<p>До найпопулярніших пакетів у сфері науки про дані (data science) можна віднести пакети екосистему пакетів <strong>tidyverse</strong>, пакети <strong>data.table</strong>, <strong>mlr3</strong> та ще багато-багато інших.</p>
+<div id="вбудовані-пакети" class="section level3" number="1.6.1">
+<h3>
+<span class="header-section-number">1.6.1</span> Вбудовані пакети<a class="anchor" aria-label="anchor" href="#%D0%B2%D0%B1%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D1%96-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8"><i class="fas fa-link"></i></a>
+</h3>
+<p>Разом з самою мовою програмування R поставляються пакети, які не потрібно встановлювати: основний <code>base</code> та декілька інших, такі як <code>stats</code>, <code>utils</code>, <code>graphics</code> та інші. Повний перелік можна переглянути за наступним кодом:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">##  [1] "base"      "compiler"  "datasets"  "graphics"  "grDevices" "grid"     </span>
+<span class="co">##  [7] "methods"   "parallel"  "splines"   "stats"     "stats4"    "tcltk"    </span>
+<span class="co">## [13] "tools"     "utils"</span></code></pre></div>
 </div>
-<div id="імпорт-та-експорт-даних" class="section level2" number="1.7">
+<div id="встановлення-пакетів-з-cran" class="section level3" number="1.6.2">
+<h3>
+<span class="header-section-number">1.6.2</span> Встановлення пакетів з CRAN<a class="anchor" aria-label="anchor" href="#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%96%D0%B2-%D0%B7-cran"><i class="fas fa-link"></i></a>
+</h3>
+<p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] 18146</span></code></pre></div>
+<p>І з кожним роком їх стає все більше:
+<img src="docs/images/CRAN.png" width="100%" style="display: block; margin: auto;">
+Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє скачувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"vroom"</span><span class="op">)</span></code></pre></div>
+Інший спосіб встановлення пакетів - через окреме меню <strong>Tools -&gt; Install Packages</strong> рис(<a href="introR.html#fig:002">1.5</a>)
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:002"></span>
+<img src="docs/images/002_install_pack.png" alt="Меню встановлення пакетів в RStudio" width="45%"><p class="caption">
+Рисунок 1.5: Меню встановлення пакетів в RStudio
+</p>
+</div>
+Або через кнопку в розділі <strong>Packages</strong> (рис. <a href="introR.html#fig:003">1.6</a>)
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:003"></span>
+<img src="docs/images/003_install_pack.png" alt="Кнопка встановлення пакетів" width="60%"><p class="caption">
+Рисунок 1.6: Кнопка встановлення пакетів
+</p>
+</div>
+Після чого з’явиться меню (рис. <a href="introR.html#fig:004">1.7</a>) в якому можна вказати назву потрібного пакету. Бажано залишити галочку <strong>“install dependencies”</strong>, оскільки деякі пакети мають залежність від інших пакетів і їх також слід встановити. Може статися ситуація, коли завантажуючи один пакет розом з ним буде додатково встановлено ще десятки інших.
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:004"></span>
+<img src="docs/images/004_install_pack.png" alt="Меню встановлення пакетів" width="60%"><p class="caption">
+Рисунок 1.7: Меню встановлення пакетів
+</p>
+</div>
+</div>
+<div id="встановлення-пакетів-з-github" class="section level3" number="1.6.3">
+<h3>
+<span class="header-section-number">1.6.3</span> Встановлення пакетів з GitHub<a class="anchor" aria-label="anchor" href="#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%96%D0%B2-%D0%B7-github"><i class="fas fa-link"></i></a>
+</h3>
+<p>Бувають випадки, коли автори пакетів не пройшли або не захотіли проходити перевірку через CRAN (насправді причин може бути безліч). В таких випадках пакет (який ви напевно знайшли через пошук в Google) скоріш за все буде зберігатися на репозиторію GitHub. Для таких випадків нам необхідно встановити пакет <code>devtools</code> та використати з нього функцію <code>install_github()</code>. Покажу на прикладі пакету <code>xaringan</code>, який я використовую для створення інтерактивних презентацій.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">'yihui/xaringan'</span><span class="op">)</span></code></pre></div>
+<p>Посилання <code>yihui/xaringan</code> — це адреса репозитарію в <a href="%22https://github.com/yihui/xaringan%22">GitHub</a></p>
+</div>
+</div>
+<div id="завантаження-даних-в-r" class="section level2" number="1.7">
 <h2>
-<span class="header-section-number">1.7</span> Імпорт та експорт даних<a class="anchor" aria-label="anchor" href="#%D1%96%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%82%D0%B0-%D0%B5%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.7</span> Завантаження даних в R<a class="anchor" aria-label="anchor" href="#%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85-%D0%B2-r"><i class="fas fa-link"></i></a>
 </h2>
 <hr>
+<p>R може імпортувати цілий спектр різноманітних файлів</p>
 </div>
 <div id="умовні-конструкції" class="section level2" number="1.8">
 <h2>
@@ -870,8 +929,14 @@ R працює з багатьма структурами даних: векто
 <li><a class="nav-link" href="#%D0%B4%D0%B0%D1%82%D0%B0-%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B8"><span class="header-section-number">1.5.5</span> Дата фрейми</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8-%D0%B2-r"><span class="header-section-number">1.6</span> Пакети в R</a></li>
-<li><a class="nav-link" href="#%D1%96%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D1%82%D0%B0-%D0%B5%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85"><span class="header-section-number">1.7</span> Імпорт та експорт даних</a></li>
+<li>
+<a class="nav-link" href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8-%D0%B2-r"><span class="header-section-number">1.6</span> Пакети в R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B2%D0%B1%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D1%96-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%B8"><span class="header-section-number">1.6.1</span> Вбудовані пакети</a></li>
+<li><a class="nav-link" href="#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%96%D0%B2-%D0%B7-cran"><span class="header-section-number">1.6.2</span> Встановлення пакетів з CRAN</a></li>
+<li><a class="nav-link" href="#%D0%B2%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%96%D0%B2-%D0%B7-github"><span class="header-section-number">1.6.3</span> Встановлення пакетів з GitHub</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D0%B4%D0%B0%D0%BD%D0%B8%D1%85-%D0%B2-r"><span class="header-section-number">1.7</span> Завантаження даних в R</a></li>
 <li><a class="nav-link" href="#%D1%83%D0%BC%D0%BE%D0%B2%D0%BD%D1%96-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D1%96%D1%97"><span class="header-section-number">1.8</span> Умовні конструкції</a></li>
 <li><a class="nav-link" href="#%D1%81%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%96%D0%B9-%D0%B2-r"><span class="header-section-number">1.9</span> Створення функцій в R</a></li>
 <li><a class="nav-link" href="#%D0%B2%D1%81%D1%82%D1%83%D0%BF-%D1%83-tidyverse"><span class="header-section-number">1.10</span> Вступ у Tidyverse</a></li>
