@@ -33,7 +33,7 @@ r_base_packages
 r_cran
 r_git
 r_read
-умовні-конструкції
+r_loop
 r_func
 r_tidy
 r_mark
