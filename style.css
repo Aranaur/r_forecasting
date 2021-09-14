@@ -16,3 +16,6 @@ pre code {
     max-width: 65rem;
     text-align: justify;
 }
+.sidebar-chapter {
+    max-height: 150vh;
+}
