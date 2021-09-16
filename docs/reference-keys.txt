@@ -31,7 +31,6 @@ r_dataframe
 r_packages
 r_base_packages
 r_cran
-r_git
 r_read
 r_loop
 r_func
