@@ -42,12 +42,12 @@ tidy_csv
 tidy_xls
 tidy_dplyr
 tidy_filter
+tidy_arrange
 tidy_select
 tidy_rename
 tidy_pipe
 tidy_mutate
 tidy_group
-tidy_summarise
 r_mark
 graphics
 decomposition
