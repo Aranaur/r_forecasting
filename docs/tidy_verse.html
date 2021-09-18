@@ -559,7 +559,7 @@
 <h3>
 <span class="header-section-number">2.3.4</span> Використання пайпів - <code>%&gt;%</code><a class="anchor" aria-label="anchor" href="#tidy_pipe"><i class="fas fa-link"></i></a>
 </h3>
-<p><strong>Пайпи</strong> (pipes) — це потужний та зручний інструмент для чіткого опису послідовності операцій. Для пояснення зручності його використання розглянемо два варіанти запису одного і того ж коду. Ті хто працював в Excel зараз згадають весь той біль.</p>
+<p><strong>Пайпи</strong> (pipes) — це потужний та зручний інструмент для <strong>чіткого опису послідовності операцій</strong>. Для пояснення зручності його використання розглянемо два варіанти запису одного і того ж коду. Ті хто працював в Excel зараз згадають весь той біль.</p>
 <p><strong>Вкладена функція</strong>, як в Excel:</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>, <span class="va">is.numeric</span><span class="op">)</span>, <span class="va">toupper</span><span class="op">)</span>
@@ -599,7 +599,102 @@
 <span class="co">## 10  1997    76.1 3667233    24522.</span>
 <span class="co">## 11  2002    77.8 3879155    34077.</span>
 <span class="co">## 12  2007    78.9 4109086    40676.</span></code></pre></div>
-<p>Погодьтеся, що другий варіант читається значно легше. Пайп працює наступним чином: він приймає результат виконання попереднього коду та передає його в якості першого аргументу наступній функції, такий собі конвєер. При цьому кожну наступну функцію ми можемо писати з наступного рядка. Взагалі, з приводу оформлення tidy-коду бажано ознайомитися з матеріалами Хедлі Вікема <span class="citation">(<a href="references.html#ref-hadley_style" role="doc-biblioref">Wickham 2021</a>)</span></p>
+<p>Погодьтеся, що другий варіант читається значно легше. Пайп працює наступним чином: він приймає результат виконання попереднього коду та передає його в якості першого аргументу наступній функції, такий собі конвєер. При цьому кожну наступну функцію ми можемо писати з наступного рядка.</p>
+<p>Взагалі, з приводу <strong>оформлення tidy-коду</strong> бажано ознайомитися з матеріалами Хедлі Вікема <span class="citation">(<a href="references.html#ref-hadley_style" role="doc-biblioref">Wickham 2021</a>)</span></p>
+<blockquote>
+<p>Майже весь наступний код я буду писати вже з використанням <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>.</p>
+</blockquote>
+</div>
+<div id="tidy_mutate" class="section level3" number="2.3.5">
+<h3>
+<span class="header-section-number">2.3.5</span> Створення нових стовпчиків - <code>mutate()</code><a class="anchor" aria-label="anchor" href="#tidy_mutate"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для створення нових стовпчиків використовується функція <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Вона завжди додає нові стовпчики в кінець дата фрейму.</p>
+<p>Розрахуємо загальний <strong>ВВП країни світу в мільярдах доларів США</strong> та додамо ще одну змінну <code>country_group</code>, яка буде характеризувати рівень ВВП країни (більше 250 млрд — високий, менше — нормальний). Для цього перемножимо ВВП на душу населення на кількість населення та поділимо на 1000000000, після чого використаємо функцію if_else (аналог “=ЕСЛИ” з Excel).</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>GDP_billion <span class="op">=</span> <span class="va">gdpPercap</span> <span class="op">*</span> <span class="va">pop</span> <span class="op">/</span> <span class="fl">10</span><span class="op">^</span><span class="fl">9</span>,
+         country_group <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">GDP_billion</span> <span class="op">&gt;</span> <span class="fl">250</span>, <span class="st">"hight_gpd"</span>, <span class="st">"normal_gdp"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="co">## # A tibble: 142 x 8</span>
+<span class="co">##    country     continent  year lifeExp       pop gdpPercap GDP_billion country_group</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;        </span>
+<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.        31.1 normal_gdp   </span>
+<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.        21.4 normal_gdp   </span>
+<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.       207.  normal_gdp   </span>
+<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.        59.6 normal_gdp   </span>
+<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.       515.  hight_gpd    </span>
+<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.       704.  hight_gpd    </span>
+<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.       296.  hight_gpd    </span>
+<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.        21.1 normal_gdp   </span>
+<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.       209.  normal_gdp   </span>
+<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.       350.  hight_gpd    </span>
+<span class="co">## # ... with 132 more rows</span></code></pre></div>
+<p>Звертаю увагу, що останній стовпчик <em>country_group</em> був створений за допомогою попереднього нового стовпчика <em>GDP_billion</em>.</p>
+<p>Також можна проводити різноманітні маніпуляції з цілою низкою стовпчиків за допомогою функцій <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> та <code>where()</code>. Наприклад, розрахуємо натуральний логарифм до всіх числових стовпчиків:</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">log</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    country     continent  year lifeExp   pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       7.58    3.36  15.9      6.66</span>
+<span class="co">##  2 Afghanistan Asia       7.58    3.41  16.0      6.71</span>
+<span class="co">##  3 Afghanistan Asia       7.58    3.47  16.1      6.75</span>
+<span class="co">##  4 Afghanistan Asia       7.58    3.53  16.3      6.73</span>
+<span class="co">##  5 Afghanistan Asia       7.59    3.59  16.4      6.61</span>
+<span class="co">##  6 Afghanistan Asia       7.59    3.65  16.5      6.67</span>
+<span class="co">##  7 Afghanistan Asia       7.59    3.69  16.4      6.89</span>
+<span class="co">##  8 Afghanistan Asia       7.59    3.71  16.4      6.75</span>
+<span class="co">##  9 Afghanistan Asia       7.60    3.73  16.6      6.48</span>
+<span class="co">## 10 Afghanistan Asia       7.60    3.73  16.9      6.45</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Або запишемо всі категоріальні змінні з великої літери:</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span>, <span class="va">toupper</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 AFGHANISTAN ASIA       1952    28.8  8425333      779.</span>
+<span class="co">##  2 AFGHANISTAN ASIA       1957    30.3  9240934      821.</span>
+<span class="co">##  3 AFGHANISTAN ASIA       1962    32.0 10267083      853.</span>
+<span class="co">##  4 AFGHANISTAN ASIA       1967    34.0 11537966      836.</span>
+<span class="co">##  5 AFGHANISTAN ASIA       1972    36.1 13079460      740.</span>
+<span class="co">##  6 AFGHANISTAN ASIA       1977    38.4 14880372      786.</span>
+<span class="co">##  7 AFGHANISTAN ASIA       1982    39.9 12881816      978.</span>
+<span class="co">##  8 AFGHANISTAN ASIA       1987    40.8 13867957      852.</span>
+<span class="co">##  9 AFGHANISTAN ASIA       1992    41.7 16317921      649.</span>
+<span class="co">## 10 AFGHANISTAN ASIA       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Для того, щоб залишити лише “новостворені” стовпчики використовується функція <code>tranmutate()</code>:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>GDP_billion <span class="op">=</span> <span class="va">gdpPercap</span> <span class="op">*</span> <span class="va">pop</span> <span class="op">/</span> <span class="fl">10</span><span class="op">^</span><span class="fl">9</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 1</span>
+<span class="co">##    GDP_billion</span>
+<span class="co">##          &lt;dbl&gt;</span>
+<span class="co">##  1        6.57</span>
+<span class="co">##  2        7.59</span>
+<span class="co">##  3        8.76</span>
+<span class="co">##  4        9.65</span>
+<span class="co">##  5        9.68</span>
+<span class="co">##  6       11.7 </span>
+<span class="co">##  7       12.6 </span>
+<span class="co">##  8       11.8 </span>
+<span class="co">##  9       10.6 </span>
+<span class="co">## 10       14.1 </span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+</div>
+<div id="tidy_group" class="section level3" number="2.3.6">
+<h3>
+<span class="header-section-number">2.3.6</span> Групування даних - <code>group_by()</code><a class="anchor" aria-label="anchor" href="#tidy_group"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="tidy_summarise" class="section level3" number="2.3.7">
+<h3>
+<span class="header-section-number">2.3.7</span> Агрегація даних - <code>group_by()</code><a class="anchor" aria-label="anchor" href="#tidy_summarise"><i class="fas fa-link"></i></a>
+</h3>
 </div>
 </div>
 <div id="r_mark" class="section level2" number="2.4">
@@ -629,6 +724,9 @@
 <li><a class="nav-link" href="#tidy_select"><span class="header-section-number">2.3.2</span> Відбір стовпчиків - select()</a></li>
 <li><a class="nav-link" href="#tidy_rename"><span class="header-section-number">2.3.3</span> Зміна назви стовпчиків - rename()</a></li>
 <li><a class="nav-link" href="#tidy_pipe"><span class="header-section-number">2.3.4</span> Використання пайпів - %&gt;%</a></li>
+<li><a class="nav-link" href="#tidy_mutate"><span class="header-section-number">2.3.5</span> Створення нових стовпчиків - mutate()</a></li>
+<li><a class="nav-link" href="#tidy_group"><span class="header-section-number">2.3.6</span> Групування даних - group_by()</a></li>
+<li><a class="nav-link" href="#tidy_summarise"><span class="header-section-number">2.3.7</span> Агрегація даних - group_by()</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#r_mark"><span class="header-section-number">2.4</span> Створення звітів: R Markdown</a></li>

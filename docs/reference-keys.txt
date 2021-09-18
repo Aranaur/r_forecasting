@@ -45,6 +45,9 @@ tidy_filter
 tidy_select
 tidy_rename
 tidy_pipe
+tidy_mutate
+tidy_group
+tidy_summarise
 r_mark
 graphics
 decomposition
