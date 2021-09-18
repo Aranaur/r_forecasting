@@ -42,6 +42,9 @@ tidy_csv
 tidy_xls
 tidy_dplyr
 tidy_filter
+tidy_select
+tidy_rename
+tidy_pipe
 r_mark
 graphics
 decomposition

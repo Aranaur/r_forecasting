@@ -168,12 +168,9 @@
 </ul>
 <div id="tidy_filter" class="section level3" number="2.3.1">
 <h3>
-<span class="header-section-number">2.3.1</span> Фільтрація рядків з допомогою функції <code>filter()</code><a class="anchor" aria-label="anchor" href="#tidy_filter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.1</span> Фільтрація рядків - <code>filter()</code><a class="anchor" aria-label="anchor" href="#tidy_filter"><i class="fas fa-link"></i></a>
 </h3>
-<p>Перш за все підключимо необхідні пакети:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
+<p>Функція <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> дозволяє формувати підвибірки даних на основі їх значень. Її перший аргумент — ім’я дата фрейму, другий і наступні — умови фільтрації.</p>
 <p>Розберемо на прикладі датасету <code>gapmainder</code> з однойменного пакету (див. таб. <a href="tidy_verse.html#tab:gapminder">2.1</a>). В ньому збережена інформація про ВВП, очікувану тривалість життя при народженні та населення для 142 країн світу з 1952 по 2007 роки.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -237,6 +234,372 @@
 </tr>
 </tbody>
 </table></div>
+<p>Перш за все підключимо необхідні пакети:</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
+<p>Виконаємо просту фільтрацію з однією умовою:</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="co">## # A tibble: 142 x 6</span>
+<span class="co">##    country     continent  year lifeExp       pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.</span>
+<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.</span>
+<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.</span>
+<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.</span>
+<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.</span>
+<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.</span>
+<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.</span>
+<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.</span>
+<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.</span>
+<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.</span>
+<span class="co">## # ... with 132 more rows</span></code></pre></div>
+<p>Фільтрація з декількома умовами:</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span>
+<span class="co">## # A tibble: 30 x 6</span>
+<span class="co">##    country                continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Albania                Europe     2007    76.4  3600523     5937.</span>
+<span class="co">##  2 Austria                Europe     2007    79.8  8199783    36126.</span>
+<span class="co">##  3 Belgium                Europe     2007    79.4 10392226    33693.</span>
+<span class="co">##  4 Bosnia and Herzegovina Europe     2007    74.9  4552198     7446.</span>
+<span class="co">##  5 Bulgaria               Europe     2007    73.0  7322858    10681.</span>
+<span class="co">##  6 Croatia                Europe     2007    75.7  4493312    14619.</span>
+<span class="co">##  7 Czech Republic         Europe     2007    76.5 10228744    22833.</span>
+<span class="co">##  8 Denmark                Europe     2007    78.3  5468120    35278.</span>
+<span class="co">##  9 Finland                Europe     2007    79.3  5238460    33207.</span>
+<span class="co">## 10 France                 Europe     2007    80.7 61083916    30470.</span>
+<span class="co">## # ... with 20 more rows</span></code></pre></div>
+<p>Умов фільтрації можна додавати безліч, їх можна перелічити через кому. Але створювати складні фільтрації можна у більш компактній формі. Для цього можна використати оператори: “ТА” (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>), “АБО” (<code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>), “НЕ” (<code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>), а також функцію <code><a href="https://rdrr.io/r/base/Logic.html">xor()</a></code>, яка виключає АБО:</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"New Zealand"</span><span class="op">)</span>
+<span class="co">## # A tibble: 1 x 6</span>
+<span class="co">##   country     continent  year lifeExp     pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 New Zealand Oceania    2007    80.2 4115771    25185.</span>
+
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2002</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="co">## # A tibble: 284 x 6</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2002    42.1 25268405      727.</span>
+<span class="co">##  2 Afghanistan Asia       2007    43.8 31889923      975.</span>
+<span class="co">##  3 Albania     Europe     2002    75.7  3508512     4604.</span>
+<span class="co">##  4 Albania     Europe     2007    76.4  3600523     5937.</span>
+<span class="co">##  5 Algeria     Africa     2002    71.0 31287142     5288.</span>
+<span class="co">##  6 Algeria     Africa     2007    72.3 33333216     6223.</span>
+<span class="co">##  7 Angola      Africa     2002    41.0 10866106     2773.</span>
+<span class="co">##  8 Angola      Africa     2007    42.7 12420476     4797.</span>
+<span class="co">##  9 Argentina   Americas   2002    74.3 38331121     8798.</span>
+<span class="co">## 10 Argentina   Americas   2007    75.3 40301927    12779.</span>
+<span class="co">## # ... with 274 more rows</span></code></pre></div>
+<p>Ще один зручний спосіб формування складного фільтру — використання виразу <code>x %in% y</code>, який фільтрує всі значення в яких <code>x</code> є одним із значень серед <code>y</code>:</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New Zealand"</span>, <span class="st">"Poland"</span>, <span class="st">"Ireland"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 3 x 6</span>
+<span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">## 1 Ireland     Europe     2007    78.9  4109086    40676.</span>
+<span class="co">## 2 New Zealand Oceania    2007    80.2  4115771    25185.</span>
+<span class="co">## 3 Poland      Europe     2007    75.6 38518241    15390.</span></code></pre></div>
+</div>
+<div id="tidy_select" class="section level3" number="2.3.2">
+<h3>
+<span class="header-section-number">2.3.2</span> Відбір стовпчиків - <code>select()</code><a class="anchor" aria-label="anchor" href="#tidy_select"><i class="fas fa-link"></i></a>
+</h3>
+<p>Функція <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> дозволяє відібрати тільки ті змінні, які нас цікавлять. Як і минулого разу, перший аргумент функції — це дата фрейм, наступний — обрані стовпці:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span>, <span class="va">year</span>, <span class="va">gdpPercap</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 3</span>
+<span class="co">##    country      year gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan  1952      779.</span>
+<span class="co">##  2 Afghanistan  1957      821.</span>
+<span class="co">##  3 Afghanistan  1962      853.</span>
+<span class="co">##  4 Afghanistan  1967      836.</span>
+<span class="co">##  5 Afghanistan  1972      740.</span>
+<span class="co">##  6 Afghanistan  1977      786.</span>
+<span class="co">##  7 Afghanistan  1982      978.</span>
+<span class="co">##  8 Afghanistan  1987      852.</span>
+<span class="co">##  9 Afghanistan  1992      649.</span>
+<span class="co">## 10 Afghanistan  1997      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Крім того не обов’язково вказувати назви змінних, можна вказувати їх <strong>порядковий номер</strong>:</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 3</span>
+<span class="co">##    country      year      pop</span>
+<span class="co">##    &lt;fct&gt;       &lt;int&gt;    &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan  1952  8425333</span>
+<span class="co">##  2 Afghanistan  1957  9240934</span>
+<span class="co">##  3 Afghanistan  1962 10267083</span>
+<span class="co">##  4 Afghanistan  1967 11537966</span>
+<span class="co">##  5 Afghanistan  1972 13079460</span>
+<span class="co">##  6 Afghanistan  1977 14880372</span>
+<span class="co">##  7 Afghanistan  1982 12881816</span>
+<span class="co">##  8 Afghanistan  1987 13867957</span>
+<span class="co">##  9 Afghanistan  1992 16317921</span>
+<span class="co">## 10 Afghanistan  1997 22227415</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Або вказувати їх <strong>послідовність у векторі</strong>:</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 4</span>
+<span class="co">##    country     lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Аналогічно, послідовність буде працювати і для назв стовпців:</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 4</span>
+<span class="co">##    country     lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Функція <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> повертає всі стовпчики, але не буде повертати вже обрані стовпчики. Тому її можна використовувати для <strong>зміни позицій змінних</strong> в дата фреймі. Хоча в більшості випадків зручніше для таких задач використовувати функцію <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code>.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">continent</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    continent country      year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;     &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Asia      Afghanistan  1952    28.8  8425333      779.</span>
+<span class="co">##  2 Asia      Afghanistan  1957    30.3  9240934      821.</span>
+<span class="co">##  3 Asia      Afghanistan  1962    32.0 10267083      853.</span>
+<span class="co">##  4 Asia      Afghanistan  1967    34.0 11537966      836.</span>
+<span class="co">##  5 Asia      Afghanistan  1972    36.1 13079460      740.</span>
+<span class="co">##  6 Asia      Afghanistan  1977    38.4 14880372      786.</span>
+<span class="co">##  7 Asia      Afghanistan  1982    39.9 12881816      978.</span>
+<span class="co">##  8 Asia      Afghanistan  1987    40.8 13867957      852.</span>
+<span class="co">##  9 Asia      Afghanistan  1992    41.7 16317921      649.</span>
+<span class="co">## 10 Asia      Afghanistan  1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>За допомогою таких функцій як <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> можна <strong>відбирати стовпчики за певним патерном у назві</strong>.</p>
+<p>Виберемо стовпчики, назва яких починається на латинську літеру “<em>с</em>”</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 2</span>
+<span class="co">##    country     continent</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;    </span>
+<span class="co">##  1 Afghanistan Asia     </span>
+<span class="co">##  2 Afghanistan Asia     </span>
+<span class="co">##  3 Afghanistan Asia     </span>
+<span class="co">##  4 Afghanistan Asia     </span>
+<span class="co">##  5 Afghanistan Asia     </span>
+<span class="co">##  6 Afghanistan Asia     </span>
+<span class="co">##  7 Afghanistan Asia     </span>
+<span class="co">##  8 Afghanistan Asia     </span>
+<span class="co">##  9 Afghanistan Asia     </span>
+<span class="co">## 10 Afghanistan Asia     </span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Або стовпчики, назва яких закінчується на латинську літеру “<em>p</em>”</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 3</span>
+<span class="co">##    lifeExp      pop gdpPercap</span>
+<span class="co">##      &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1    28.8  8425333      779.</span>
+<span class="co">##  2    30.3  9240934      821.</span>
+<span class="co">##  3    32.0 10267083      853.</span>
+<span class="co">##  4    34.0 11537966      836.</span>
+<span class="co">##  5    36.1 13079460      740.</span>
+<span class="co">##  6    38.4 14880372      786.</span>
+<span class="co">##  7    39.9 12881816      978.</span>
+<span class="co">##  8    40.8 13867957      852.</span>
+<span class="co">##  9    41.7 16317921      649.</span>
+<span class="co">## 10    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Стовпчики, назва яких містить на латинську літеру “<em>o</em>”</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"o"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 3</span>
+<span class="co">##    country     continent      pop</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;        &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       8425333</span>
+<span class="co">##  2 Afghanistan Asia       9240934</span>
+<span class="co">##  3 Afghanistan Asia      10267083</span>
+<span class="co">##  4 Afghanistan Asia      11537966</span>
+<span class="co">##  5 Afghanistan Asia      13079460</span>
+<span class="co">##  6 Afghanistan Asia      14880372</span>
+<span class="co">##  7 Afghanistan Asia      12881816</span>
+<span class="co">##  8 Afghanistan Asia      13867957</span>
+<span class="co">##  9 Afghanistan Asia      16317921</span>
+<span class="co">## 10 Afghanistan Asia      22227415</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Функція <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> використовується для відбору за регулярними виразами, з якими можна ознайомитися у книзі “Mastering Regular Expressions” <span class="citation">(<a href="references.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>.</p>
+<p>Відбір стовпчиків за їх типом даних виконується за допомогою функції <code><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if()</a></code>:</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">is.numeric</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 4</span>
+<span class="co">##     year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1  1952    28.8  8425333      779.</span>
+<span class="co">##  2  1957    30.3  9240934      821.</span>
+<span class="co">##  3  1962    32.0 10267083      853.</span>
+<span class="co">##  4  1967    34.0 11537966      836.</span>
+<span class="co">##  5  1972    36.1 13079460      740.</span>
+<span class="co">##  6  1977    38.4 14880372      786.</span>
+<span class="co">##  7  1982    39.9 12881816      978.</span>
+<span class="co">##  8  1987    40.8 13867957      852.</span>
+<span class="co">##  9  1992    41.7 16317921      649.</span>
+<span class="co">## 10  1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+</div>
+<div id="tidy_rename" class="section level3" number="2.3.3">
+<h3>
+<span class="header-section-number">2.3.3</span> Зміна назви стовпчиків - <code>rename()</code><a class="anchor" aria-label="anchor" href="#tidy_rename"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для зміни назви стовпчиків використовується функція <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>. Синтаксис функції: <code>нова_назва = стара_назва</code>.</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">gapminder</span>, population <span class="op">=</span> <span class="va">pop</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    country     continent  year lifeExp population gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8    8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3    9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0   10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0   11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1   13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4   14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9   12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8   13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7   16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8   22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Замість старої назви можна вказати порядковий номер стовпчика:</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">gapminder</span>, population <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    country     continent  year lifeExp population gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8    8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3    9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0   10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0   11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1   13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4   14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9   12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8   13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7   16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8   22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Змінити назву стовпчика за певною умовою можна за допомогою функції <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with()</a></code>. Наприклад, записати всі назви великими літерами:</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">toupper</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    COUNTRY     CONTINENT  YEAR LIFEEXP      POP GDPPERCAP</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Стовпчики, які починаються на латинську “<em>c</em>” записати великими літерами:</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">toupper</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    COUNTRY     CONTINENT  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<p>Більш складний варіант, але дуже часто вживаний — заміна певного символу або частини в назві. Такі варіанти зустрічаються, коли в назвах стовпчиків зустрічаються зайві “пробіли.” В нашому дата фреймі з цим все добре, але для прикладу замінемо всі “<em>co</em>” на “<em>CO</em>”</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"co"</span>, <span class="st">"CO"</span>, <span class="va">.x</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## # A tibble: 1,704 x 6</span>
+<span class="co">##    COuntry     COntinent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+</div>
+<div id="tidy_pipe" class="section level3" number="2.3.4">
+<h3>
+<span class="header-section-number">2.3.4</span> Використання пайпів - <code>%&gt;%</code><a class="anchor" aria-label="anchor" href="#tidy_pipe"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Пайпи</strong> (pipes) — це потужний та зручний інструмент для чіткого опису послідовності операцій. Для пояснення зручності його використання розглянемо два варіанти запису одного і того ж коду. Ті хто працював в Excel зараз згадають весь той біль.</p>
+<p><strong>Вкладена функція</strong>, як в Excel:</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>, <span class="va">is.numeric</span><span class="op">)</span>, <span class="va">toupper</span><span class="op">)</span>
+<span class="co">## # A tibble: 12 x 4</span>
+<span class="co">##     YEAR LIFEEXP     POP GDPPERCAP</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1  1952    66.9 2952156     5210.</span>
+<span class="co">##  2  1957    68.9 2878220     5599.</span>
+<span class="co">##  3  1962    70.3 2830000     6632.</span>
+<span class="co">##  4  1967    71.1 2900100     7656.</span>
+<span class="co">##  5  1972    71.3 3024400     9531.</span>
+<span class="co">##  6  1977    72.0 3271900    11151.</span>
+<span class="co">##  7  1982    73.1 3480000    12618.</span>
+<span class="co">##  8  1987    74.4 3539900    13873.</span>
+<span class="co">##  9  1992    75.5 3557761    17559.</span>
+<span class="co">## 10  1997    76.1 3667233    24522.</span>
+<span class="co">## 11  2002    77.8 3879155    34077.</span>
+<span class="co">## 12  2007    78.9 4109086    40676.</span></code></pre></div>
+<p>Той самий код з використанням <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>:</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span>
+<span class="co">## # A tibble: 12 x 4</span>
+<span class="co">##     YEAR LIFEEXP     POP GDPPERCAP</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1  1952    66.9 2952156     5210.</span>
+<span class="co">##  2  1957    68.9 2878220     5599.</span>
+<span class="co">##  3  1962    70.3 2830000     6632.</span>
+<span class="co">##  4  1967    71.1 2900100     7656.</span>
+<span class="co">##  5  1972    71.3 3024400     9531.</span>
+<span class="co">##  6  1977    72.0 3271900    11151.</span>
+<span class="co">##  7  1982    73.1 3480000    12618.</span>
+<span class="co">##  8  1987    74.4 3539900    13873.</span>
+<span class="co">##  9  1992    75.5 3557761    17559.</span>
+<span class="co">## 10  1997    76.1 3667233    24522.</span>
+<span class="co">## 11  2002    77.8 3879155    34077.</span>
+<span class="co">## 12  2007    78.9 4109086    40676.</span></code></pre></div>
+<p>Погодьтеся, що другий варіант читається значно легше. Пайп працює наступним чином: він приймає результат виконання попереднього коду та передає його в якості першого аргументу наступній функції, такий собі конвєер. При цьому кожну наступну функцію ми можемо писати з наступного рядка. Взагалі, з приводу оформлення tidy-коду бажано ознайомитися з матеріалами Хедлі Вікема <span class="citation">(<a href="references.html#ref-hadley_style" role="doc-biblioref">Wickham 2021</a>)</span></p>
 </div>
 </div>
 <div id="r_mark" class="section level2" number="2.4">
@@ -261,7 +624,12 @@
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#tidy_dplyr"><span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#tidy_filter"><span class="header-section-number">2.3.1</span> Фільтрація рядків з допомогою функції filter()</a></li></ul>
+<a class="nav-link" href="#tidy_dplyr"><span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidy_filter"><span class="header-section-number">2.3.1</span> Фільтрація рядків - filter()</a></li>
+<li><a class="nav-link" href="#tidy_select"><span class="header-section-number">2.3.2</span> Відбір стовпчиків - select()</a></li>
+<li><a class="nav-link" href="#tidy_rename"><span class="header-section-number">2.3.3</span> Зміна назви стовпчиків - rename()</a></li>
+<li><a class="nav-link" href="#tidy_pipe"><span class="header-section-number">2.3.4</span> Використання пайпів - %&gt;%</a></li>
+</ul>
 </li>
 <li><a class="nav-link" href="#r_mark"><span class="header-section-number">2.4</span> Створення звітів: R Markdown</a></li>
 </ul>
