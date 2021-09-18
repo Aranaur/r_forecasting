@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 2 Вступ у Tidyverse | ОСНОВИ ПРОГНОЗУВАННЯ В R</title>
+<meta name="author" content="Ігор Мірошниченко">
+<meta name="description" content="2.1 Tidy-всесвіт Tidyverse — це екосистема, набір пакетів, які спеціально створені для науки про дані (data science). В ньому є ключові пакети (ядро tidyverse) та побічні — які додатково...">
+<meta name="generator" content="bookdown 0.24.1 with bs4_book()">
+<meta property="og:title" content=" 2 Вступ у Tidyverse | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 Tidy-всесвіт Tidyverse — це екосистема, набір пакетів, які спеціально створені для науки про дані (data science). В ньому є ключові пакети (ядро tidyverse) та побічні — які додатково...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 2 Вступ у Tidyverse | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta name="twitter:description" content="2.1 Tidy-всесвіт Tidyverse — це екосистема, набір пакетів, які спеціально створені для науки про дані (data science). В ньому є ключові пакети (ядро tidyverse) та побічні — які додатково...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.9002/transition.js"></script><script src="libs/bs3compat-0.2.5.9002/tabs.js"></script><script src="libs/bs3compat-0.2.5.9002/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">ОСНОВИ ПРОГНОЗУВАННЯ В R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Зміст</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Основи прогнозування в R</a></li>
+<li><a class="" href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></li>
+<li><a class="active" href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
+<li><a class="" href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></li>
+<li><a class="" href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></li>
+<li><a class="" href="features.html"><span class="header-section-number">5</span> Аналіз часового ряду</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">6</span> Інструментарій прогнозування</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">7</span> Регресійні моделі</a></li>
+<li><a class="" href="expsmooth.html"><span class="header-section-number">8</span> Експоненціальне згладжування</a></li>
+<li><a class="" href="arima.html"><span class="header-section-number">9</span> ARIMA-моделі</a></li>
+<li><a class="" href="prophet.html"><span class="header-section-number">10</span> Prophet Facebook</a></li>
+<li><a class="" href="clustering.html"><span class="header-section-number">11</span> Кластеризація</a></li>
+<li><a class="" href="references.html">Література</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/aranaur/r_forecasting">Переглянути код <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy_verse" class="section level1" number="2">
+<h1>
+<span class="header-section-number"> 2</span> Вступ у Tidyverse<a class="anchor" aria-label="anchor" href="#tidy_verse"><i class="fas fa-link"></i></a>
+</h1>
+<hr>
+<div id="tidy" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Tidy-всесвіт<a class="anchor" aria-label="anchor" href="#tidy"><i class="fas fa-link"></i></a>
+</h2>
+<hr>
+<p><a href="https://www.tidyverse.org/"><strong>Tidyverse</strong></a> — це екосистема, набір пакетів, які спеціально створені для науки про дані (data science). В ньому є ключові пакети (ядро tidyverse) та побічні — які додатково розширюють можливості мови програмування R.</p>
+<p><strong>Концепція охайних даних (tidy-data)</strong> передбачає приведення даних до формату, в якому:</p>
+<ul>
+<li><p>Кожна змінна міститься в окремому стовпчику</p></li>
+<li><p>Кожне спостереження міститься в окремому рядку</p></li>
+<li><p>Кожне значення міститься в окремій комірці</p></li>
+</ul>
+<p><strong>Ядро tidyverse:</strong></p>
+<ul>
+<li><p><strong>ggplot2</strong>, для візуалізації</p></li>
+<li><p><strong>dplyr</strong>, для маніпуляції з даними</p></li>
+<li><p><strong>tidyr</strong>, для отримання охайних даних (tidy data)</p></li>
+<li><p><strong>readr</strong>, для зчитування та записування файлів в R</p></li>
+<li><p><strong>purrr</strong>, для функціонального програмування</p></li>
+<li><p><strong>tibble</strong>, для роботи з тібблами (tibble), просунутий варіант дата фреймів</p></li>
+<li><p><strong>stringr</strong>, для роботи з текстовими даними</p></li>
+<li><p><strong>forcats</strong>, для роботи з факторами (factors)</p></li>
+</ul>
+<p>Крім того є ще низка допоміжних пакетів, які не входять до ядра tidyverse але вважаються його частиною:</p>
+<ul>
+<li><p><strong>vroom</strong>, для швидкого завантаження даних</p></li>
+<li><p><strong>DBI</strong>, для роботи з базами даних</p></li>
+<li><p><strong>haven</strong>, для даних SPSS, Stata та SAS</p></li>
+<li><p><strong>httr</strong>, для роботи з API</p></li>
+<li><p><strong>readxl</strong> для завантаження .xls та .xlsx файлів</p></li>
+<li><p><strong>googlesheets4</strong>, для роботи з Google Sheet</p></li>
+<li><p><strong>googledrive</strong>, для роботи з Google Drive</p></li>
+<li><p><strong>rvest</strong>, для скрапінгу веб-сторінок</p></li>
+<li><p><strong>jsonlite</strong>, для роботи з JSON-файлами</p></li>
+<li><p><strong>xml2</strong>, для роботи з XML</p></li>
+<li><p><strong>lubridate</strong>, для роботи з датами</p></li>
+<li><p><strong>dbplyr</strong>, для перетворення коду <code>dplyr</code> в SQL</p></li>
+<li><p><strong>dtplyr</strong>, для перетворення коду на <code>data.table</code></p></li>
+<li><p><strong>magrittr</strong>, для використання конвеєрів <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> (pipe)</p></li>
+<li><p><strong>glue</strong>, для поєднання даних та тексту</p></li>
+<li><p><strong>tidymodels</strong>, для роботи з моделями манинного навчання.</p></li>
+</ul>
+<p>І це ще не повний список. Крім офіційних пакетів tidyverse є ще низка пакетів, які намагаються відповідати принципам tidyverse і доповнюють його.</p>
+<p>Для завантаження tidyverse необхідно виконати наступний код:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
+<p>Для підключення:</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="tidy_read" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Завантаження даних<a class="anchor" aria-label="anchor" href="#tidy_read"><i class="fas fa-link"></i></a>
+</h2>
+<hr>
+<div id="tidy_csv" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> Завантаження .csv, .tsv файлів<a class="anchor" aria-label="anchor" href="#tidy_csv"><i class="fas fa-link"></i></a>
+</h3>
+<p>Стандартною функцією завантаження даних типу <code>.csv</code> є функція <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, але на досить великих масивах даних краще використовувати <code>read_csv()</code> з пакету <code>readr</code>. Синтаксис цих функцій схожий, але <code>read_csv()</code> одразу приведе дані до формату <code>tibble</code>.
+Першим аргументом функції є шлях до файлу (зі оберненим слешем <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>), в тому числі URL-посилання:</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">read_file</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"docs/data/file.csv"</span><span class="op">)</span>
+<span class="va">read_url</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://git.io/JztOr"</span><span class="op">)</span></code></pre></div>
+<p>Аналогічно до <code>read_csv()</code> можна використовувати функцію <code>vroom</code> з однойменного пакету. Головною особливістю цього пакету є <a href="https://cran.r-project.org/web/packages/vroom/vignettes/benchmarks.html">швидкість завантаження даних</a>.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vroom_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html">vroom</a></span><span class="op">(</span><span class="st">"docs/data/file.csv"</span><span class="op">)</span>
+<span class="va">vroom_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html">vroom</a></span><span class="op">(</span><span class="st">"https://git.io/JztOr"</span><span class="op">)</span></code></pre></div>
+<p>Для <strong>завантаження</strong> одночасно <strong>декількох файлів однакової структури</strong> корисно використовувати наступну конструкцію</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">filse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"\\.csv$"</span><span class="op">)</span>
+<span class="va">vroom_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html">vroom</a></span><span class="op">(</span><span class="va">filse</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="tidy_xls" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> Завантаження .xls, .xlsx файлів<a class="anchor" aria-label="anchor" href="#tidy_xls"><i class="fas fa-link"></i></a>
+</h3>
+<p>Для завантаження файлів <strong>Excel</strong> використовується пакет <code>readxl</code> та функція <code>read_excel()</code>.
+На початку можна отримати перелік листів файлу Excel за допомогою функції <code>excel_sheets()</code></p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets</a></span><span class="op">(</span><span class="st">"docs/data/tourism.xlsx"</span><span class="op">)</span>
+<span class="co">## [1] "Sheet1" "Sheet2" "Sheet3"</span></code></pre></div>
+<p>Після чого зчитати данні з потрібного листа</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">excel_file</span> <span class="op">&lt;-</span> <span class="fu">read_excel</span><span class="op">(</span><span class="st">"docs/data/tourism.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"Sheet1"</span><span class="op">)</span></code></pre></div>
+<p>В більшості випадків цього інструментарію має бути достатньо, але для завантаження специфічних файлів завжди можна знайти потрібний пакет. Не соромтеся використовувати google.</p>
+</div>
+</div>
+<div id="tidy_dplyr" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету <code>dplyr</code><a class="anchor" aria-label="anchor" href="#tidy_dplyr"><i class="fas fa-link"></i></a>
+</h2>
+<hr>
+<p><code>dplyr</code> — це один з найголовніших пакетів <code>tidyverse</code>. Головний його функціонал — це різноманітні маніпуляції з даними:</p>
+<ul>
+<li><p>фільтрація даних — <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></p></li>
+<li><p>впорядкування даних — <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></p></li>
+<li><p>вибір змінних — <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code></p></li>
+<li><p>створення нових змінних — <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></p></li>
+<li><p>групування даних — <code>group_by</code></p></li>
+<li><p>агрегування даних — <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code></p></li>
+</ul>
+<div id="tidy_filter" class="section level3" number="2.3.1">
+<h3>
+<span class="header-section-number">2.3.1</span> Фільтрація рядків з допомогою функції <code>filter()</code><a class="anchor" aria-label="anchor" href="#tidy_filter"><i class="fas fa-link"></i></a>
+</h3>
+<p>Перш за все підключимо необхідні пакети:</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
+<p>Розберемо на прикладі датасету <code>gapmainder</code> з однойменного пакету (див. таб. <a href="tidy_verse.html#tab:gapminder">2.1</a>). В ньому збережена інформація про ВВП, очікувану тривалість життя при народженні та населення для 142 країн світу з 1952 по 2007 роки.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:gapminder">Таблиця 2.1: </span>Перші шість значень датасету gapminder</caption>
+<thead><tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="r_mark" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Створення звітів: R Markdown<a class="anchor" aria-label="anchor" href="#r_mark"><i class="fas fa-link"></i></a>
+</h2>
+<hr>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></div>
+<div class="next"><a href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidy_verse"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
+<li><a class="nav-link" href="#tidy"><span class="header-section-number">2.1</span> Tidy-всесвіт</a></li>
+<li>
+<a class="nav-link" href="#tidy_read"><span class="header-section-number">2.2</span> Завантаження даних</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidy_csv"><span class="header-section-number">2.2.1</span> Завантаження .csv, .tsv файлів</a></li>
+<li><a class="nav-link" href="#tidy_xls"><span class="header-section-number">2.2.2</span> Завантаження .xls, .xlsx файлів</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#tidy_dplyr"><span class="header-section-number">2.3</span> Маніпуляції з даними за допомогою пакету dplyr</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#tidy_filter"><span class="header-section-number">2.3.1</span> Фільтрація рядків з допомогою функції filter()</a></li></ul>
+</li>
+<li><a class="nav-link" href="#r_mark"><span class="header-section-number">2.4</span> Створення звітів: R Markdown</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/aranaur/r_forecasting/blob/master/01-tidyverse.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_forecasting/edit/master/01-tidyverse.Rmd">Редагувати <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-18.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Книгу створено за допомогою пакету <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

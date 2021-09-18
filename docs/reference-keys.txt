@@ -5,6 +5,7 @@ fig:datastr
 fig:002
 fig:003
 fig:004
+tab:gapminder
 intro_r
 install_r
 install_pc
@@ -32,10 +33,15 @@ r_packages
 r_base_packages
 r_cran
 r_git
-r_read
-r_loop
-r_func
-r_tidy
+r_lib
+r_::
+tidy_verse
+tidy
+tidy_read
+tidy_csv
+tidy_xls
+tidy_dplyr
+tidy_filter
 r_mark
 graphics
 decomposition

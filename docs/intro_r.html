@@ -41,15 +41,16 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Основи прогнозування в R</a></li>
 <li><a class="active" href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></li>
-<li><a class="" href="graphics.html"><span class="header-section-number">2</span> Візуалізація часових рядів</a></li>
-<li><a class="" href="decomposition.html"><span class="header-section-number">3</span> Декомпозиція часових рядів</a></li>
-<li><a class="" href="features.html"><span class="header-section-number">4</span> Аналіз часового ряду</a></li>
-<li><a class="" href="toolbox.html"><span class="header-section-number">5</span> Інструментарій прогнозування</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">6</span> Регресійні моделі</a></li>
-<li><a class="" href="expsmooth.html"><span class="header-section-number">7</span> Експоненціальне згладжування</a></li>
-<li><a class="" href="arima.html"><span class="header-section-number">8</span> ARIMA-моделі</a></li>
-<li><a class="" href="prophet.html"><span class="header-section-number">9</span> Prophet Facebook</a></li>
-<li><a class="" href="clustering.html"><span class="header-section-number">10</span> Кластеризація</a></li>
+<li><a class="" href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
+<li><a class="" href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></li>
+<li><a class="" href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></li>
+<li><a class="" href="features.html"><span class="header-section-number">5</span> Аналіз часового ряду</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">6</span> Інструментарій прогнозування</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">7</span> Регресійні моделі</a></li>
+<li><a class="" href="expsmooth.html"><span class="header-section-number">8</span> Експоненціальне згладжування</a></li>
+<li><a class="" href="arima.html"><span class="header-section-number">9</span> ARIMA-моделі</a></li>
+<li><a class="" href="prophet.html"><span class="header-section-number">10</span> Prophet Facebook</a></li>
+<li><a class="" href="clustering.html"><span class="header-section-number">11</span> Кластеризація</a></li>
 <li><a class="" href="references.html">Література</a></li>
 </ul>
 
@@ -803,7 +804,7 @@ R працює з багатьма структурами даних: векто
 <hr>
 <p>R - мова програмування з дуже широкими можливостями. Однак рано чи пізно ми почнемо стикатися з задачами, які потребуватимуть додаткових можливостей. Ці можливості можна розширити за допомогою додаткових <strong>пакетів (packages)</strong>.</p>
 <p>В більшості випадків основним змістом пакетів є набір додаткових функцій, даних або нових структур даних.</p>
-<p>До найпопулярніших пакетів у сфері науки про дані (data science) можна віднести пакети екосистему пакетів <strong>tidyverse</strong>, пакети <strong>data.table</strong>, <strong>mlr3</strong> та ще багато-багато інших.</p>
+<p>До найпопулярніших пакетів у сфері науки про дані (data science) можна віднести екосистему пакетів <strong>tidyverse</strong>, пакети <strong>data.table</strong>, <strong>mlr3</strong> та ще багато-багато інших.</p>
 <div id="r_base_packages" class="section level3" number="1.6.1">
 <h3>
 <span class="header-section-number">1.6.1</span> Вбудовані пакети<a class="anchor" aria-label="anchor" href="#r_base_packages"><i class="fas fa-link"></i></a>
@@ -811,8 +812,8 @@ R працює з багатьма структурами даних: векто
 <p>Разом з самою мовою програмування R поставляються пакети, які не потрібно встановлювати: основний <code>base</code> та декілька інших, такі як <code>stats</code>, <code>utils</code>, <code>graphics</code> та інші. Повний перелік можна переглянути за наступним кодом:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span>priority <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##  [1] "base"      "compiler"  "datasets"  "graphics"  "grDevices" "grid"      "methods"  </span>
-<span class="co">##  [8] "parallel"  "splines"   "stats"     "stats4"    "tcltk"     "tools"     "utils"</span></code></pre></div>
+<span class="co">##  [1] "base"      "compiler"  "datasets"  "graphics"  "grDevices" "grid"      "methods"   "parallel" </span>
+<span class="co">##  [9] "splines"   "stats"     "stats4"    "tcltk"     "tools"     "utils"</span></code></pre></div>
 </div>
 <div id="r_cran" class="section level3" number="1.6.2">
 <h3>
@@ -821,7 +822,7 @@ R працює з багатьма структурами даних: векто
 <p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## [1] 18184</span></code></pre></div>
+<span class="co">## [1] 18189</span></code></pre></div>
 <p>І з кожним роком їх стає все більше:
 <img src="docs/images/CRAN.png" width="100%" style="display: block; margin: auto;">
 Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє звантажувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
@@ -859,42 +860,33 @@ R працює з багатьма структурами даних: векто
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">'yihui/xaringan'</span><span class="op">)</span></code></pre></div>
 <p>Посилання <code>yihui/xaringan</code> — це адреса пакету в <a href="https://github.com/yihui/xaringan">GitHub</a></p>
 </div>
+<div id="r_lib" class="section level3" number="1.6.4">
+<h3>
+<span class="header-section-number">1.6.4</span> Підключення пакетів<a class="anchor" aria-label="anchor" href="#r_lib"><i class="fas fa-link"></i></a>
+</h3>
+<p>Після завантаження пакета, для того щоб почати користуватися його функціоналом необхідно його підключити до поточної сесії. Для цього використовується функція <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Назву пакету можна писати як в лапках так і без них.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vroom.r-lib.org">vroom</a></span><span class="op">)</span></code></pre></div>
+<p>Як правило, підключення пакетів записується на початку скрипта, що дає можливість зрозуміти який інструментарій використовується в ньому.</p>
 </div>
-<div id="r_read" class="section level2" number="1.7">
-<h2>
-<span class="header-section-number">1.7</span> Завантаження даних в R<a class="anchor" aria-label="anchor" href="#r_read"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-<p>R може імпортувати цілий спектр різноманітних файлів</p>
+<div id="r_::" class="section level3" number="1.6.5">
+<h3>
+<span class="header-section-number">1.6.5</span> Виклик функції через <code>::</code><a class="anchor" aria-label="anchor" href="#r_::"><i class="fas fa-link"></i></a>
+</h3>
+<p>У випадках, коли функцію з пакету буде використано вcього декілька разів, є сенс не підключати весь пакет, а завантажити тільки окрему його функцію. Для цього використовується спеціальний оператор <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code>, ліворуч від якого вказується назва пакету, а праворуч відповідна функція з обраного пакету.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">vroom</span><span class="fu">::</span><span class="fu"><a href="https://vroom.r-lib.org/reference/vroom_example.html">vroom_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Крім того оператор <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Пріоритет надається функціоналу пакету, який був підключений останній.</p>
+
 </div>
-<div id="r_loop" class="section level2" number="1.8">
-<h2>
-<span class="header-section-number">1.8</span> Умовні конструкції<a class="anchor" aria-label="anchor" href="#r_loop"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="r_func" class="section level2" number="1.9">
-<h2>
-<span class="header-section-number">1.9</span> Створення функцій в R<a class="anchor" aria-label="anchor" href="#r_func"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="r_tidy" class="section level2" number="1.10">
-<h2>
-<span class="header-section-number">1.10</span> Вступ у Tidyverse<a class="anchor" aria-label="anchor" href="#r_tidy"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
-</div>
-<div id="r_mark" class="section level2" number="1.11">
-<h2>
-<span class="header-section-number">1.11</span> Створення звітів: R Markdown<a class="anchor" aria-label="anchor" href="#r_mark"><i class="fas fa-link"></i></a>
-</h2>
-<hr>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="index.html">Основи прогнозування в R</a></div>
-<div class="next"><a href="graphics.html"><span class="header-section-number">2</span> Візуалізація часових рядів</a></div>
+<div class="next"><a href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
       <ul class="nav navbar-nav">
@@ -932,19 +924,16 @@ R працює з багатьма структурами даних: векто
 <li><a class="nav-link" href="#r_base_packages"><span class="header-section-number">1.6.1</span> Вбудовані пакети</a></li>
 <li><a class="nav-link" href="#r_cran"><span class="header-section-number">1.6.2</span> Встановлення пакетів з CRAN</a></li>
 <li><a class="nav-link" href="#r_git"><span class="header-section-number">1.6.3</span> Встановлення пакетів з GitHub</a></li>
+<li><a class="nav-link" href="#r_lib"><span class="header-section-number">1.6.4</span> Підключення пакетів</a></li>
+<li><a class="nav-link" href="#r_::"><span class="header-section-number">1.6.5</span> Виклик функції через ::</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#r_read"><span class="header-section-number">1.7</span> Завантаження даних в R</a></li>
-<li><a class="nav-link" href="#r_loop"><span class="header-section-number">1.8</span> Умовні конструкції</a></li>
-<li><a class="nav-link" href="#r_func"><span class="header-section-number">1.9</span> Створення функцій в R</a></li>
-<li><a class="nav-link" href="#r_tidy"><span class="header-section-number">1.10</span> Вступ у Tidyverse</a></li>
-<li><a class="nav-link" href="#r_mark"><span class="header-section-number">1.11</span> Створення звітів: R Markdown</a></li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/aranaur/r_forecasting/blob/master/01-intro.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/aranaur/r_forecasting/edit/master/01-intro.Rmd">Редагувати <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/aranaur/r_forecasting/blob/master/00-intro.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_forecasting/edit/master/00-intro.Rmd">Редагувати <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -956,7 +945,7 @@ R працює з багатьма структурами даних: векто
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-16.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

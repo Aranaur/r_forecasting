@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 7 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R</title>
+<title> 8 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R</title>
 <meta name="author" content="Ігор Мірошниченко">
 <meta name="description" content="text">
 <meta name="generator" content="bookdown 0.24.1 with bs4_book()">
-<meta property="og:title" content=" 7 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta property="og:title" content=" 8 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R">
 <meta property="og:type" content="book">
 <meta property="og:description" content="text">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 7 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta name="twitter:title" content=" 8 Експоненціальне згладжування | ОСНОВИ ПРОГНОЗУВАННЯ В R">
 <meta name="twitter:description" content="text">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -41,15 +41,16 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Основи прогнозування в R</a></li>
 <li><a class="" href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></li>
-<li><a class="" href="graphics.html"><span class="header-section-number">2</span> Візуалізація часових рядів</a></li>
-<li><a class="" href="decomposition.html"><span class="header-section-number">3</span> Декомпозиція часових рядів</a></li>
-<li><a class="" href="features.html"><span class="header-section-number">4</span> Аналіз часового ряду</a></li>
-<li><a class="" href="toolbox.html"><span class="header-section-number">5</span> Інструментарій прогнозування</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">6</span> Регресійні моделі</a></li>
-<li><a class="active" href="expsmooth.html"><span class="header-section-number">7</span> Експоненціальне згладжування</a></li>
-<li><a class="" href="arima.html"><span class="header-section-number">8</span> ARIMA-моделі</a></li>
-<li><a class="" href="prophet.html"><span class="header-section-number">9</span> Prophet Facebook</a></li>
-<li><a class="" href="clustering.html"><span class="header-section-number">10</span> Кластеризація</a></li>
+<li><a class="" href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
+<li><a class="" href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></li>
+<li><a class="" href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></li>
+<li><a class="" href="features.html"><span class="header-section-number">5</span> Аналіз часового ряду</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">6</span> Інструментарій прогнозування</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">7</span> Регресійні моделі</a></li>
+<li><a class="active" href="expsmooth.html"><span class="header-section-number">8</span> Експоненціальне згладжування</a></li>
+<li><a class="" href="arima.html"><span class="header-section-number">9</span> ARIMA-моделі</a></li>
+<li><a class="" href="prophet.html"><span class="header-section-number">10</span> Prophet Facebook</a></li>
+<li><a class="" href="clustering.html"><span class="header-section-number">11</span> Кластеризація</a></li>
 <li><a class="" href="references.html">Література</a></li>
 </ul>
 
@@ -58,19 +59,19 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="expsmooth" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="expsmooth" class="section level1" number="8">
 <h1>
-<span class="header-section-number"> 7</span> Експоненціальне згладжування<a class="anchor" aria-label="anchor" href="#expsmooth"><i class="fas fa-link"></i></a>
+<span class="header-section-number"> 8</span> Експоненціальне згладжування<a class="anchor" aria-label="anchor" href="#expsmooth"><i class="fas fa-link"></i></a>
 </h1>
 <p>text</p>
 
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="regression.html"><span class="header-section-number">6</span> Регресійні моделі</a></div>
-<div class="next"><a href="arima.html"><span class="header-section-number">8</span> ARIMA-моделі</a></div>
+<div class="prev"><a href="regression.html"><span class="header-section-number">7</span> Регресійні моделі</a></div>
+<div class="next"><a href="arima.html"><span class="header-section-number">9</span> ARIMA-моделі</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#expsmooth"><span class="header-section-number">7</span> Експоненціальне згладжування</a></li></ul>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#expsmooth"><span class="header-section-number">8</span> Експоненціальне згладжування</a></li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -87,7 +88,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-16.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
