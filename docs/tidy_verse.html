@@ -42,7 +42,7 @@
 <li><a class="" href="index.html">Основи прогнозування в R</a></li>
 <li><a class="" href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></li>
 <li><a class="active" href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
-<li><a class="" href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></li>
+<li><a class="" href="ts.html"><span class="header-section-number">3</span> Часові ряди та їх візуалізація</a></li>
 <li><a class="" href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></li>
 <li><a class="" href="features.html"><span class="header-section-number">5</span> Аналіз часового ряду</a></li>
 <li><a class="" href="toolbox.html"><span class="header-section-number">6</span> Інструментарій прогнозування</a></li>
@@ -124,7 +124,7 @@
 <span class="header-section-number">2.2.1</span> Завантаження .csv, .tsv файлів<a class="anchor" aria-label="anchor" href="#tidy_csv"><i class="fas fa-link"></i></a>
 </h3>
 <p>Стандартною функцією завантаження даних типу <code>.csv</code> є функція <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, але на досить великих масивах даних краще використовувати <code>read_csv()</code> з пакету <code>readr</code>. Синтаксис цих функцій схожий, але <code>read_csv()</code> одразу приведе дані до формату <code>tibble</code>.
-Першим аргументом функції є шлях до файлу (зі оберненим слешем <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>), в тому числі URL-посилання:</p>
+Першим аргументом функції є шлях до файлу (із оберненим слешем <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>). Також можна використовувати прямі URL-посилання на файл:</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">read_file</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"docs/data/file.csv"</span><span class="op">)</span>
 <span class="va">read_url</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://git.io/JztOr"</span><span class="op">)</span></code></pre></div>
@@ -784,7 +784,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></div>
-<div class="next"><a href="graphics.html"><span class="header-section-number">3</span> Візуалізація часових рядів</a></div>
+<div class="next"><a href="ts.html"><span class="header-section-number">3</span> Часові ряди та їх візуалізація</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
       <ul class="nav navbar-nav">

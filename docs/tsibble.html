@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R</title>
+<meta name="author" content="Ігор Мірошниченко">
+<meta name="description" content="В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить до складнощів їх...">
+<meta name="generator" content="bookdown 0.24.1 with bs4_book()">
+<meta property="og:title" content=" 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить до складнощів їх...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R">
+<meta name="twitter:description" content="В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить до складнощів їх...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.9002/transition.js"></script><script src="libs/bs3compat-0.2.5.9002/tabs.js"></script><script src="libs/bs3compat-0.2.5.9002/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">ОСНОВИ ПРОГНОЗУВАННЯ В R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Зміст</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Основи прогнозування в R</a></li>
+<li><a class="" href="intro_r.html"><span class="header-section-number">1</span> Вступ до R</a></li>
+<li><a class="" href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></li>
+<li><a class="active" href="tsibble.html"><span class="header-section-number">3</span> Часові ряди та їх візуалізація</a></li>
+<li><a class="" href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></li>
+<li><a class="" href="features.html"><span class="header-section-number">5</span> Аналіз часового ряду</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">6</span> Інструментарій прогнозування</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">7</span> Регресійні моделі</a></li>
+<li><a class="" href="expsmooth.html"><span class="header-section-number">8</span> Експоненціальне згладжування</a></li>
+<li><a class="" href="arima.html"><span class="header-section-number">9</span> ARIMA-моделі</a></li>
+<li><a class="" href="prophet.html"><span class="header-section-number">10</span> Prophet Facebook</a></li>
+<li><a class="" href="clustering.html"><span class="header-section-number">11</span> Кластеризація</a></li>
+<li><a class="" href="references.html">Література</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/aranaur/r_forecasting">Переглянути код <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tsibble" class="section level1" number="3">
+<h1>
+<span class="header-section-number"> 3</span> Часові ряди та їх візуалізація<a class="anchor" aria-label="anchor" href="#tsibble"><i class="fas fa-link"></i></a>
+</h1>
+<hr>
+<p>В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: <code>ts</code>, <code>zoo</code> або <code>xts</code>. Але всі вони випадають з філософії “<em>tiny-data</em>,” що призводить до складнощів їх використання з сімейством пакетів <code>tidyverse</code>.</p>
+<p>Рішенням цієї задачі займалися рід вчених на чолі з професором кафедри Економетрики та бізнес статистика університету Монаша <a href="https://robjhyndman.com/">Робом Хідманом</a>. Вони розробили новий формат представлення часових рядів, який реалізований в пакеті <code>tsibble</code> <span class="citation">(<a href="references.html#ref-hyndman_tibble" role="doc-biblioref">Wang, Cook, and Hyndman 2020</a>)</span>. Згідно цього формату, часові ряди:</p>
+<ul>
+<li><p>зберігаються в табличному вигляді;</p></li>
+<li><p>містять в собі мінімум два стовпчики: значення кількісної змінної впорядкованої в часі (<em>measurements</em>) та часова шкала (<em>index</em>) — в який момент часу значення були записані;</p></li>
+<li><p>може містити декілька часових рядів, які згруповані за ключовим змінними (<em>key</em>).</p></li>
+</ul>
+<p>Для створення об’єкту <code>tsibble</code> використовується функція <code>tsibble()</code>:</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tsibble</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2017</span><span class="op">:</span><span class="fl">2021</span>,
+        variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>,
+        index <span class="op">=</span> <span class="va">year</span><span class="op">)</span>
+<span class="co">## # A tsibble: 5 x 2 [1Y]</span>
+<span class="co">##    year variable</span>
+<span class="co">##   &lt;int&gt;    &lt;int&gt;</span>
+<span class="co">## 1  2017       56</span>
+<span class="co">## 2  2018       62</span>
+<span class="co">## 3  2019      100</span>
+<span class="co">## 4  2020       66</span>
+<span class="co">## 5  2021       53</span></code></pre></div>
+<p>Для перетворення дата фрейму в <code>tsibble</code> використовується функція <code>as_tsibble()</code>, яка містить наступні аргументи:</p>
+<ul>
+<li><p><code>x</code> — об’єкт даних (це може бути вектор, матриця, дата фрейм тощо);</p></li>
+<li><p><code>key</code> — групуюча змінна(і), яка(і) визначають кожен часовий ряд в даних;</p></li>
+<li><p><code>index</code> — змінна з мітками часу;</p></li>
+<li><p><code>regular</code> — логічний аргумент, який вказує на регулярність (<code>TRUE</code>) або нерегулярність (<code>FALSE</code>) спостережень в даних;</p></li>
+<li><p><code>validate</code> — логічний аргумент, який перевіряє (<code>TRUE</code>) унікальність кожного спостереження в парах значень <code>key</code> та <code>index</code>;</p></li>
+<li><p><code>.drop</code> — логічний аргумент, якщо вказати <code>TRUE</code> з таблиці будуть виключені спостереження, для яких не має групуючого значення <code>key</code>;</p></li>
+<li><p><code>tz</code> — вказується часовий пояс спостережень;</p></li>
+<li><p><code>pivot_longer</code> — логічний аргумент, <code>TRUE</code> переводить дані в широкий формат, <code>FALSE</code> залишає як є.</p></li>
+</ul>
+<p>Розглянемо приклад перетворення дата фрейму <code>gapminder</code> у <code>tsibble</code>:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu">as_tsibble</span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">continent</span><span class="op">)</span>,
+             index <span class="op">=</span> <span class="va">year</span><span class="op">)</span>
+<span class="co">## # A tsibble: 1,704 x 6 [5Y]</span>
+<span class="co">## # Key:       country, continent [142]</span>
+<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
+<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
+<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
+<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
+<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
+<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
+<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
+<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
+<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
+<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
+<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="tidy_verse.html"><span class="header-section-number">2</span> Вступ у Tidyverse</a></div>
+<div class="next"><a href="decomposition.html"><span class="header-section-number">4</span> Декомпозиція часових рядів</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>На цій сторінці</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#tsibble"><span class="header-section-number">3</span> Часові ряди та їх візуалізація</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/aranaur/r_forecasting/blob/master/02-graphics.Rmd">Переглянути код <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/aranaur/r_forecasting/edit/master/02-graphics.Rmd">Редагувати <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>Книгу створено за допомогою пакету <a class="text-light" href="https://bookdown.org">bookdown</a>.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
