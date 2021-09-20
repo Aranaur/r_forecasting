@@ -69,7 +69,7 @@
 <span class="header-section-number">3.1</span> Об’єкт <code>tsibble</code><a class="anchor" aria-label="anchor" href="#ts_tsibble"><i class="fas fa-link"></i></a>
 </h2>
 <p>В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: <code>ts</code>, <code>zoo</code> або <code>xts</code>. Але всі вони випадають з філософії “<em>tiny-data</em>,” що призводить до складнощів їх використання з сімейством пакетів <code>tidyverse</code>.</p>
-<p>Рішенням цієї задачі займалися рід вчених на чолі з професором кафедри Економетрики та бізнес статистика університету Монаша <a href="https://robjhyndman.com/">Робом Хідманом</a>. Вони розробили новий формат представлення часових рядів, який реалізований в пакеті <code>tsibble</code> <span class="citation">(<a href="references.html#ref-hyndman_tibble" role="doc-biblioref">Wang, Cook, and Hyndman 2020</a>)</span>. Згідно цього формату, часові ряди:</p>
+<p>Рішенням цієї задачі займалися ряд вчених на чолі з професором кафедри економетрики та бізнес статистика університету Монаша <a href="https://robjhyndman.com/">Робом Хідманом</a>. Вони розробили новий формат представлення часових рядів, який реалізований в пакеті <code>tsibble</code> <span class="citation">(<a href="references.html#ref-hyndman_tibble" role="doc-biblioref">Wang, Cook, and Hyndman 2020</a>)</span>. Згідно цього формату, часові ряди:</p>
 <ul>
 <li><p>зберігаються в табличному вигляді;</p></li>
 <li><p>містять в собі мінімум два стовпчики: значення кількісної змінної впорядкованої в часі (<em>measurements</em>) та часова шкала (<em>index</em>) — в який момент часу значення були записані;</p></li>
@@ -83,11 +83,11 @@
 <span class="co">## # A tsibble: 5 x 2 [1Y]</span>
 <span class="co">##    year variable</span>
 <span class="co">##   &lt;int&gt;    &lt;int&gt;</span>
-<span class="co">## 1  2017       59</span>
-<span class="co">## 2  2018       84</span>
-<span class="co">## 3  2019       89</span>
-<span class="co">## 4  2020       81</span>
-<span class="co">## 5  2021       96</span></code></pre></div>
+<span class="co">## 1  2017       90</span>
+<span class="co">## 2  2018       56</span>
+<span class="co">## 3  2019       86</span>
+<span class="co">## 4  2020       78</span>
+<span class="co">## 5  2021       58</span></code></pre></div>
 <p>Для перетворення дата фрейму в <code>tsibble</code> використовується функція <code>as_tsibble()</code>, яка містить наступні аргументи:</p>
 <ul>
 <li><p><code>x</code> — об’єкт даних (це може бути вектор, матриця, дата фрейм тощо);</p></li>
@@ -177,7 +177,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-19.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
