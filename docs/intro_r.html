@@ -822,7 +822,7 @@ R працює з багатьма структурами даних: векто
 <p>Пакети які пройшли перевірку зберігаються в <strong>Comprehensive R Archive Network (CRAN)</strong>. Для перегляду кількості опублікованих пакетів на CRAN можна використати наступний код:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/available.packages.html">available.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## [1] 18189</span></code></pre></div>
+<span class="co">## [1] 18253</span></code></pre></div>
 <p>І з кожним роком їх стає все більше:
 <img src="docs/images/CRAN.png" width="100%" style="display: block; margin: auto;">
 Функція <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> дозволяє звантажувати та встановлювати пакети з CRAN. Для прикладу встановимо пакет <code>vroom</code>, для зчитування файлів</p>
@@ -876,7 +876,7 @@ R працює з багатьма структурами даних: векто
 <p>У випадках, коли функцію з пакету буде використано вcього декілька разів, є сенс не підключати весь пакет, а завантажити тільки окрему його функцію. Для цього використовується спеціальний оператор <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code>, ліворуч від якого вказується назва пакету, а праворуч відповідна функція з обраного пакету.</p>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">vroom</span><span class="fu">::</span><span class="fu"><a href="https://vroom.r-lib.org/reference/vroom_example.html">vroom_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Крім того оператор <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
+<p>Крім того оператор <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> корисний у випадках, коли в різних пакетах присутні функції з однаковою назвою. Наприклад в пакеті <code>dplyr</code> є функція <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Функція з такою ж назвою є в базовому пакеті <code>stats</code>, який використовується у зовсім інших задачах. В таких просто вкажіть з якого пакету ви хочете використати функцію:</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Пріоритет надається функціоналу пакету, який був підключений останній.</p>
@@ -945,7 +945,7 @@ R працює з багатьма структурами даних: векто
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-20.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -953,6 +953,34 @@ R працює з багатьма структурами даних: векто
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

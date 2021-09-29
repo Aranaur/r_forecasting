@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R</title>
 <meta name="author" content="Ігор Мірошниченко">
-<meta name="description" content="3.1 Об’єкт tsibble В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить...">
+<meta name="description" content="Часовий ряд — це послідовність значень деякої змінної, що зареєстровані в певні моменти часу. Розрізняють одновимірні та багатовимірні часові ряди. В першому випадку розглядається тільки одна...">
 <meta name="generator" content="bookdown 0.24.1 with bs4_book()">
 <meta property="og:title" content=" 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R">
 <meta property="og:type" content="book">
-<meta property="og:description" content="3.1 Об’єкт tsibble В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить...">
+<meta property="og:description" content="Часовий ряд — це послідовність значень деякої змінної, що зареєстровані в певні моменти часу. Розрізняють одновимірні та багатовимірні часові ряди. В першому випадку розглядається тільки одна...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 3 Часові ряди та їх візуалізація | ОСНОВИ ПРОГНОЗУВАННЯ В R">
-<meta name="twitter:description" content="3.1 Об’єкт tsibble В мові програмування R є широкий спектр класів, за допомогою яких можна представити часові ряди: ts, zoo або xts. Але всі вони випадають з філософії “tiny-data,” що призводить...">
+<meta name="twitter:description" content="Часовий ряд — це послідовність значень деякої змінної, що зареєстровані в певні моменти часу. Розрізняють одновимірні та багатовимірні часові ряди. В першому випадку розглядається тільки одна...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.9002/transition.js"></script><script src="libs/bs3compat-0.2.5.9002/tabs.js"></script><script src="libs/bs3compat-0.2.5.9002/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -64,6 +64,16 @@
 <span class="header-section-number"> 3</span> Часові ряди та їх візуалізація<a class="anchor" aria-label="anchor" href="#ts"><i class="fas fa-link"></i></a>
 </h1>
 <hr>
+<p><strong>Часовий ряд</strong> — це послідовність значень деякої змінної, що зареєстровані в певні моменти часу.</p>
+<p>Розрізняють <em>одновимірні</em> та <em>багатовимірні</em> часові ряди. В першому випадку розглядається тільки одна змінна, в другому — декілька паралельних спостережень.</p>
+<p>Часовий ряди можна записати, як <span class="math inline">\(y_t\)</span>, читається: часовий ряд <span class="math inline">\(y\)</span> в момент часу <span class="math inline">\(t\)</span>.</p>
+<p>В загальному випадку часовий ряд <span class="math inline">\(y_t\)</span> розкладають на складові або <em>компоненти</em>:</p>
+<ul>
+<li><p>тренд (<span class="math inline">\(T_t\)</span>) — відповідає за довгострокову тенденцію зміни значень ряду (зростання, спадання, стагнація). Він може бути лінійним або нелінійним.</p></li>
+<li><p>сезонна компонента (<span class="math inline">\(S_t\)</span>) — відповідає за коливання часового ряду, які повторюються з постійною частотою. В цілому, якщо частота ряду щотижнева, щомісячна або щоквартальна і менше, вона може відображати сезонні коливання, тоді як для щорічних даних сезонність визначити неможливо.</p></li>
+<li><p>циклічна компонента (<span class="math inline">\(C_t\)</span>) — відповідає за довгострокові коливання ряду з непостійною регулярністю. Циклічні коливання охоплюють багаторічні періоди. Наприклад, це може бути пов’язано зі станом економіки країни (криза, спад, депресія тощо).</p></li>
+<li><p>випадкова компонента (<span class="math inline">\(R_t\)</span>) —</p></li>
+</ul>
 <div id="ts_tsibble" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> Об’єкт <code>tsibble</code><a class="anchor" aria-label="anchor" href="#ts_tsibble"><i class="fas fa-link"></i></a>
@@ -83,11 +93,11 @@
 <span class="co">## # A tsibble: 5 x 2 [1Y]</span>
 <span class="co">##    year variable</span>
 <span class="co">##   &lt;int&gt;    &lt;int&gt;</span>
-<span class="co">## 1  2017       90</span>
-<span class="co">## 2  2018       56</span>
-<span class="co">## 3  2019       86</span>
-<span class="co">## 4  2020       78</span>
-<span class="co">## 5  2021       58</span></code></pre></div>
+<span class="co">## 1  2017       64</span>
+<span class="co">## 2  2018       58</span>
+<span class="co">## 3  2019       91</span>
+<span class="co">## 4  2020       69</span>
+<span class="co">## 5  2021       54</span></code></pre></div>
 <p>Для перетворення дата фрейму в <code>tsibble</code> використовується функція <code>as_tsibble()</code>, яка містить наступні аргументи:</p>
 <ul>
 <li><p><code>x</code> — об’єкт даних (це може бути вектор, матриця, дата фрейм тощо);</p></li>
@@ -177,7 +187,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-20.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -185,6 +195,34 @@
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>
