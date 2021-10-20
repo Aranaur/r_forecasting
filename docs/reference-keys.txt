@@ -51,6 +51,7 @@ tidy_group
 r_mark
 ts
 ts_tsibble
+ts_gaps
 decomposition
 features
 toolbox

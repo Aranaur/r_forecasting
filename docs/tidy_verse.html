@@ -259,18 +259,18 @@
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span>
 <span class="co">## # A tibble: 30 x 6</span>
-<span class="co">##    country                continent  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Albania                Europe     2007    76.4  3600523     5937.</span>
-<span class="co">##  2 Austria                Europe     2007    79.8  8199783    36126.</span>
-<span class="co">##  3 Belgium                Europe     2007    79.4 10392226    33693.</span>
-<span class="co">##  4 Bosnia and Herzegovina Europe     2007    74.9  4552198     7446.</span>
-<span class="co">##  5 Bulgaria               Europe     2007    73.0  7322858    10681.</span>
-<span class="co">##  6 Croatia                Europe     2007    75.7  4493312    14619.</span>
-<span class="co">##  7 Czech Republic         Europe     2007    76.5 10228744    22833.</span>
-<span class="co">##  8 Denmark                Europe     2007    78.3  5468120    35278.</span>
-<span class="co">##  9 Finland                Europe     2007    79.3  5238460    33207.</span>
-<span class="co">## 10 France                 Europe     2007    80.7 61083916    30470.</span>
+<span class="co">##    country       continent  year lifeExp    pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Albania       Europe     2007    76.4 3.60e6     5937.</span>
+<span class="co">##  2 Austria       Europe     2007    79.8 8.20e6    36126.</span>
+<span class="co">##  3 Belgium       Europe     2007    79.4 1.04e7    33693.</span>
+<span class="co">##  4 Bosnia and H~ Europe     2007    74.9 4.55e6     7446.</span>
+<span class="co">##  5 Bulgaria      Europe     2007    73.0 7.32e6    10681.</span>
+<span class="co">##  6 Croatia       Europe     2007    75.7 4.49e6    14619.</span>
+<span class="co">##  7 Czech Republ~ Europe     2007    76.5 1.02e7    22833.</span>
+<span class="co">##  8 Denmark       Europe     2007    78.3 5.47e6    35278.</span>
+<span class="co">##  9 Finland       Europe     2007    79.3 5.24e6    33207.</span>
+<span class="co">## 10 France        Europe     2007    80.7 6.11e7    30470.</span>
 <span class="co">## # ... with 20 more rows</span></code></pre></div>
 <p>Умов фільтрації можна додавати безліч, їх можна перелічити через кому. Але створювати складні фільтрації можна у більш компактній формі. Для цього можна використати оператори: “ТА” (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>), “АБО” (<code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>), “НЕ” (<code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>), а також функцію <code><a href="https://rdrr.io/r/base/Logic.html">xor()</a></code>, яка виключає АБО:</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
@@ -330,18 +330,18 @@
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country          continent  year lifeExp       pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Japan            Asia       2007    82.6 127467972    31656.</span>
-<span class="co">##  2 Hong Kong, China Asia       2007    82.2   6980412    39725.</span>
-<span class="co">##  3 Japan            Asia       2002    82   127065841    28605.</span>
-<span class="co">##  4 Iceland          Europe     2007    81.8    301931    36181.</span>
-<span class="co">##  5 Switzerland      Europe     2007    81.7   7554661    37506.</span>
-<span class="co">##  6 Hong Kong, China Asia       2002    81.5   6762476    30209.</span>
-<span class="co">##  7 Australia        Oceania    2007    81.2  20434176    34435.</span>
-<span class="co">##  8 Spain            Europe     2007    80.9  40448191    28821.</span>
-<span class="co">##  9 Sweden           Europe     2007    80.9   9031088    33860.</span>
-<span class="co">## 10 Israel           Asia       2007    80.7   6426679    25523.</span>
+<span class="co">##    country          continent  year lifeExp    pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Japan            Asia       2007    82.6 1.27e8    31656.</span>
+<span class="co">##  2 Hong Kong, China Asia       2007    82.2 6.98e6    39725.</span>
+<span class="co">##  3 Japan            Asia       2002    82   1.27e8    28605.</span>
+<span class="co">##  4 Iceland          Europe     2007    81.8 3.02e5    36181.</span>
+<span class="co">##  5 Switzerland      Europe     2007    81.7 7.55e6    37506.</span>
+<span class="co">##  6 Hong Kong, China Asia       2002    81.5 6.76e6    30209.</span>
+<span class="co">##  7 Australia        Oceania    2007    81.2 2.04e7    34435.</span>
+<span class="co">##  8 Spain            Europe     2007    80.9 4.04e7    28821.</span>
+<span class="co">##  9 Sweden           Europe     2007    80.9 9.03e6    33860.</span>
+<span class="co">## 10 Israel           Asia       2007    80.7 6.43e6    25523.</span>
 <span class="co">## # ... with 1,694 more rows</span>
 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="op">-</span><span class="va">pop</span><span class="op">)</span>
@@ -682,19 +682,20 @@
          country_group <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">GDP_billion</span> <span class="op">&gt;</span> <span class="fl">250</span>, <span class="st">"hight_gpd"</span>, <span class="st">"normal_gdp"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 <span class="co">## # A tibble: 142 x 8</span>
-<span class="co">##    country     continent  year lifeExp       pop gdpPercap GDP_billion country_group</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;        </span>
-<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.        31.1 normal_gdp   </span>
-<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.        21.4 normal_gdp   </span>
-<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.       207.  normal_gdp   </span>
-<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.        59.6 normal_gdp   </span>
-<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.       515.  hight_gpd    </span>
-<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.       704.  hight_gpd    </span>
-<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.       296.  hight_gpd    </span>
-<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.        21.1 normal_gdp   </span>
-<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.       209.  normal_gdp   </span>
-<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.       350.  hight_gpd    </span>
-<span class="co">## # ... with 132 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year lifeExp       pop gdpPercap</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.</span>
+<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.</span>
+<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.</span>
+<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.</span>
+<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.</span>
+<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.</span>
+<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.</span>
+<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.</span>
+<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.</span>
+<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.</span>
+<span class="co">## # ... with 132 more rows, and 2 more variables:</span>
+<span class="co">## #   GDP_billion &lt;dbl&gt;, country_group &lt;chr&gt;</span></code></pre></div>
 <p>Звертаю увагу, що останній стовпчик <em>country_group</em> був створений за допомогою попереднього нового стовпчика <em>GDP_billion</em>.</p>
 <p>Також можна проводити різноманітні маніпуляції з цілою низкою стовпчиків за допомогою функцій <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> та <code>where()</code>. Наприклад, розрахуємо натуральний логарифм до всіх числових стовпчиків:</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
@@ -825,7 +826,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-29.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

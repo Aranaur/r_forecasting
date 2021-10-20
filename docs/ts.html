@@ -72,7 +72,7 @@
 <li><p>тренд (<span class="math inline">\(T_t\)</span>) — відповідає за довгострокову тенденцію зміни значень ряду (зростання, спадання, стагнація). Він може бути лінійним або нелінійним.</p></li>
 <li><p>сезонна компонента (<span class="math inline">\(S_t\)</span>) — відповідає за коливання часового ряду, які повторюються з постійною частотою. В цілому, якщо частота ряду щотижнева, щомісячна або щоквартальна і менше, вона може відображати сезонні коливання, тоді як для щорічних даних сезонність визначити неможливо.</p></li>
 <li><p>циклічна компонента (<span class="math inline">\(C_t\)</span>) — відповідає за довгострокові коливання ряду з непостійною регулярністю. Циклічні коливання охоплюють багаторічні періоди. Наприклад, це може бути пов’язано зі станом економіки країни (криза, спад, депресія тощо).</p></li>
-<li><p>випадкова компонента (<span class="math inline">\(R_t\)</span>) —</p></li>
+<li><p>випадкова компонента (<span class="math inline">\(R_t\)</span>) — стохастичні значення часового ряду, які неможливо врахувати.</p></li>
 </ul>
 <div id="ts_tsibble" class="section level2" number="3.1">
 <h2>
@@ -93,11 +93,11 @@
 <span class="co">## # A tsibble: 5 x 2 [1Y]</span>
 <span class="co">##    year variable</span>
 <span class="co">##   &lt;int&gt;    &lt;int&gt;</span>
-<span class="co">## 1  2017       64</span>
-<span class="co">## 2  2018       58</span>
-<span class="co">## 3  2019       91</span>
-<span class="co">## 4  2020       69</span>
-<span class="co">## 5  2021       54</span></code></pre></div>
+<span class="co">## 1  2017       75</span>
+<span class="co">## 2  2018       94</span>
+<span class="co">## 3  2019       92</span>
+<span class="co">## 4  2020       51</span>
+<span class="co">## 5  2021       52</span></code></pre></div>
 <p>Для перетворення дата фрейму в <code>tsibble</code> використовується функція <code>as_tsibble()</code>, яка містить наступні аргументи:</p>
 <ul>
 <li><p><code>x</code> — об’єкт даних (це може бути вектор, матриця, дата фрейм тощо);</p></li>
@@ -151,14 +151,64 @@
 <span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
 <span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
 <span class="co">## # ... with 1,694 more rows</span></code></pre></div>
-<p>В даному випадку, ми отримали <code>tsibble</code>, який містить дві групуючі змінні та річні дані з інтвервалом у 5 років (<code>5Y</code>).</p>
+<p>В даному випадку, ми отримали <code>tsibble</code>, який містить дві ключові змінні та річні дані з інтервалом у 5 років (<code>5Y</code>).</p>
+<p>Або подивимось на датасет з генерації відновлювальної електроенергії в Україні у 2021 році:</p>
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ua_energy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://vroom.r-lib.org/reference/vroom.html">vroom</a></span><span class="op">(</span><span class="st">"https://git.io/J6Sjt"</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Time <span class="op">=</span> <span class="fu">parse_date_time</span><span class="op">(</span><span class="va">Time</span>, orders <span class="op">=</span> <span class="st">"H-dmy"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">as_tsibble</span><span class="op">(</span>index <span class="op">=</span> <span class="va">Time</span><span class="op">)</span>
+
+<span class="va">ua_energy</span>
+<span class="co">## # A tsibble: 61,368 x 14 [1h] &lt;UTC&gt;</span>
+<span class="co">##    Time                  AES   TEC   VDE   TES   GES</span>
+<span class="co">##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">##  1 2014-01-01 01:00:00 10728  2825    50  6044  1809</span>
+<span class="co">##  2 2014-01-01 02:00:00 10606  2822    49  6038   863</span>
+<span class="co">##  3 2014-01-01 03:00:00 10515  2837    54  5865   355</span>
+<span class="co">##  4 2014-01-01 04:00:00 10475  2827    42  5524   185</span>
+<span class="co">##  5 2014-01-01 05:00:00 10427  2826    49  5506   274</span>
+<span class="co">##  6 2014-01-01 06:00:00 10473  2827    55  5346   434</span>
+<span class="co">##  7 2014-01-01 07:00:00 10469  2833    55  5343   193</span>
+<span class="co">##  8 2014-01-01 08:00:00 10493  2829    54  5324    72</span>
+<span class="co">##  9 2014-01-01 09:00:00 10479  2835   113  5366   557</span>
+<span class="co">## 10 2014-01-01 10:00:00 10455  2837   118  5431   862</span>
+<span class="co">## # ... with 61,358 more rows, and 8 more variables:</span>
+<span class="co">## #   GAES_GEN &lt;dbl&gt;, CONSUMPTION &lt;dbl&gt;, GAES_PUMP &lt;dbl&gt;,</span>
+<span class="co">## #   UK_BLR_RUS &lt;dbl&gt;, UK_EURO &lt;dbl&gt;, UK_MLD &lt;dbl&gt;,</span>
+<span class="co">## #   ...13 &lt;dbl&gt;, ...14 &lt;lgl&gt;</span></code></pre></div>
+</div>
+<div id="ts_gaps" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Пропущенні значення<a class="anchor" aria-label="anchor" href="#ts_gaps"><i class="fas fa-link"></i></a>
+</h2>
+<p>При обробці непідготовлених даних досить часто зустріємося із ситуацією пропущених даних. Ця проблема особливо впливає на ефективність моделей прогнозування часових рядів.</p>
+<p>Для перевірки наявності пропущених значень використовується функція <code>has_gaps()</code>:</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
+  <span class="fu">as_tsibble</span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">continent</span><span class="op">)</span>,
+             index <span class="op">=</span> <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">has_gaps</span><span class="op">(</span><span class="op">)</span>
+<span class="co">## # A tibble: 142 x 3</span>
+<span class="co">##    country     continent .gaps</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;lgl&gt;</span>
+<span class="co">##  1 Afghanistan Asia      FALSE</span>
+<span class="co">##  2 Albania     Europe    FALSE</span>
+<span class="co">##  3 Algeria     Africa    FALSE</span>
+<span class="co">##  4 Angola      Africa    FALSE</span>
+<span class="co">##  5 Argentina   Americas  FALSE</span>
+<span class="co">##  6 Australia   Oceania   FALSE</span>
+<span class="co">##  7 Austria     Europe    FALSE</span>
+<span class="co">##  8 Bahrain     Asia      FALSE</span>
+<span class="co">##  9 Bangladesh  Asia      FALSE</span>
+<span class="co">## 10 Belgium     Europe    FALSE</span>
+<span class="co">## # ... with 132 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
   <span class="fu">as_tsibble</span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">continent</span><span class="op">)</span>,
              index <span class="op">=</span> <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">autoplot</span><span class="op">(</span>.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">theme</span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="r_forecasting_files/figure-html/unnamed-chunk-105-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="r_forecasting_files/figure-html/unnamed-chunk-107-1.png" width="100%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -170,6 +220,7 @@
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#ts"><span class="header-section-number">3</span> Часові ряди та їх візуалізація</a></li>
 <li><a class="nav-link" href="#ts_tsibble"><span class="header-section-number">3.1</span> Об’єкт tsibble</a></li>
+<li><a class="nav-link" href="#ts_gaps"><span class="header-section-number">3.2</span> Пропущенні значення</a></li>
 </ul>
 
       <div class="book-extra">
@@ -187,7 +238,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-09-29.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
