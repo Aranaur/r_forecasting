@@ -242,68 +242,83 @@
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 <span class="co">## # A tibble: 142 x 6</span>
-<span class="co">##    country     continent  year lifeExp       pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.</span>
-<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.</span>
-<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.</span>
-<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.</span>
-<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.</span>
-<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.</span>
-<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.</span>
-<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.</span>
-<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.</span>
-<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.</span>
-<span class="co">## # ... with 132 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2007</span>
+<span class="co">##  2 Albania     Europe     2007</span>
+<span class="co">##  3 Algeria     Africa     2007</span>
+<span class="co">##  4 Angola      Africa     2007</span>
+<span class="co">##  5 Argentina   Americas   2007</span>
+<span class="co">##  6 Australia   Oceania    2007</span>
+<span class="co">##  7 Austria     Europe     2007</span>
+<span class="co">##  8 Bahrain     Asia       2007</span>
+<span class="co">##  9 Bangladesh  Asia       2007</span>
+<span class="co">## 10 Belgium     Europe     2007</span>
+<span class="co">## # ... with 132 more rows, and 3</span>
+<span class="co">## #   more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Фільтрація з декількома умовами:</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span>
 <span class="co">## # A tibble: 30 x 6</span>
-<span class="co">##    country       continent  year lifeExp    pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Albania       Europe     2007    76.4 3.60e6     5937.</span>
-<span class="co">##  2 Austria       Europe     2007    79.8 8.20e6    36126.</span>
-<span class="co">##  3 Belgium       Europe     2007    79.4 1.04e7    33693.</span>
-<span class="co">##  4 Bosnia and H~ Europe     2007    74.9 4.55e6     7446.</span>
-<span class="co">##  5 Bulgaria      Europe     2007    73.0 7.32e6    10681.</span>
-<span class="co">##  6 Croatia       Europe     2007    75.7 4.49e6    14619.</span>
-<span class="co">##  7 Czech Republ~ Europe     2007    76.5 1.02e7    22833.</span>
-<span class="co">##  8 Denmark       Europe     2007    78.3 5.47e6    35278.</span>
-<span class="co">##  9 Finland       Europe     2007    79.3 5.24e6    33207.</span>
-<span class="co">## 10 France        Europe     2007    80.7 6.11e7    30470.</span>
-<span class="co">## # ... with 20 more rows</span></code></pre></div>
+<span class="co">##    country       continent  year</span>
+<span class="co">##    &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Albania       Europe     2007</span>
+<span class="co">##  2 Austria       Europe     2007</span>
+<span class="co">##  3 Belgium       Europe     2007</span>
+<span class="co">##  4 Bosnia and H~ Europe     2007</span>
+<span class="co">##  5 Bulgaria      Europe     2007</span>
+<span class="co">##  6 Croatia       Europe     2007</span>
+<span class="co">##  7 Czech Republ~ Europe     2007</span>
+<span class="co">##  8 Denmark       Europe     2007</span>
+<span class="co">##  9 Finland       Europe     2007</span>
+<span class="co">## 10 France        Europe     2007</span>
+<span class="co">## # ... with 20 more rows, and 3</span>
+<span class="co">## #   more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Умов фільтрації можна додавати безліч, їх можна перелічити через кому. Але створювати складні фільтрації можна у більш компактній формі. Для цього можна використати оператори: “ТА” (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>), “АБО” (<code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>), “НЕ” (<code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>), а також функцію <code><a href="https://rdrr.io/r/base/Logic.html">xor()</a></code>, яка виключає АБО:</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"New Zealand"</span><span class="op">)</span>
 <span class="co">## # A tibble: 1 x 6</span>
-<span class="co">##   country     continent  year lifeExp     pop gdpPercap</span>
-<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">## 1 New Zealand Oceania    2007    80.2 4115771    25185.</span>
+<span class="co">##   country     continent  year</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">## 1 New Zealand Oceania    2007</span>
+<span class="co">## # ... with 3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span>
 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2002</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 <span class="co">## # A tibble: 284 x 6</span>
-<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       2002    42.1 25268405      727.</span>
-<span class="co">##  2 Afghanistan Asia       2007    43.8 31889923      975.</span>
-<span class="co">##  3 Albania     Europe     2002    75.7  3508512     4604.</span>
-<span class="co">##  4 Albania     Europe     2007    76.4  3600523     5937.</span>
-<span class="co">##  5 Algeria     Africa     2002    71.0 31287142     5288.</span>
-<span class="co">##  6 Algeria     Africa     2007    72.3 33333216     6223.</span>
-<span class="co">##  7 Angola      Africa     2002    41.0 10866106     2773.</span>
-<span class="co">##  8 Angola      Africa     2007    42.7 12420476     4797.</span>
-<span class="co">##  9 Argentina   Americas   2002    74.3 38331121     8798.</span>
-<span class="co">## 10 Argentina   Americas   2007    75.3 40301927    12779.</span>
-<span class="co">## # ... with 274 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2002</span>
+<span class="co">##  2 Afghanistan Asia       2007</span>
+<span class="co">##  3 Albania     Europe     2002</span>
+<span class="co">##  4 Albania     Europe     2007</span>
+<span class="co">##  5 Algeria     Africa     2002</span>
+<span class="co">##  6 Algeria     Africa     2007</span>
+<span class="co">##  7 Angola      Africa     2002</span>
+<span class="co">##  8 Angola      Africa     2007</span>
+<span class="co">##  9 Argentina   Americas   2002</span>
+<span class="co">## 10 Argentina   Americas   2007</span>
+<span class="co">## # ... with 274 more rows, and 3</span>
+<span class="co">## #   more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Ще один зручний спосіб формування складного фільтру — використання виразу <code>x %in% y</code>, який фільтрує всі значення в яких <code>x</code> є одним із значень серед <code>y</code>:</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New Zealand"</span>, <span class="st">"Poland"</span>, <span class="st">"Ireland"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 3 x 6</span>
-<span class="co">##   country     continent  year lifeExp      pop gdpPercap</span>
-<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">## 1 Ireland     Europe     2007    78.9  4109086    40676.</span>
-<span class="co">## 2 New Zealand Oceania    2007    80.2  4115771    25185.</span>
-<span class="co">## 3 Poland      Europe     2007    75.6 38518241    15390.</span></code></pre></div>
+<span class="co">##   country     continent  year</span>
+<span class="co">##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">## 1 Ireland     Europe     2007</span>
+<span class="co">## 2 New Zealand Oceania    2007</span>
+<span class="co">## 3 Poland      Europe     2007</span>
+<span class="co">## # ... with 3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="tidy_arrange" class="section level3" number="2.3.2">
 <h3>
@@ -313,52 +328,61 @@
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">lifeExp</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country      continent  year lifeExp     pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Rwanda       Africa     1992    23.6 7290203      737.</span>
-<span class="co">##  2 Afghanistan  Asia       1952    28.8 8425333      779.</span>
-<span class="co">##  3 Gambia       Africa     1952    30    284320      485.</span>
-<span class="co">##  4 Angola       Africa     1952    30.0 4232095     3521.</span>
-<span class="co">##  5 Sierra Leone Africa     1952    30.3 2143249      880.</span>
-<span class="co">##  6 Afghanistan  Asia       1957    30.3 9240934      821.</span>
-<span class="co">##  7 Cambodia     Asia       1977    31.2 6978607      525.</span>
-<span class="co">##  8 Mozambique   Africa     1952    31.3 6446316      469.</span>
-<span class="co">##  9 Sierra Leone Africa     1957    31.6 2295678     1004.</span>
-<span class="co">## 10 Burkina Faso Africa     1952    32.0 4469979      543.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country      continent  year</span>
+<span class="co">##    &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Rwanda       Africa     1992</span>
+<span class="co">##  2 Afghanistan  Asia       1952</span>
+<span class="co">##  3 Gambia       Africa     1952</span>
+<span class="co">##  4 Angola       Africa     1952</span>
+<span class="co">##  5 Sierra Leone Africa     1952</span>
+<span class="co">##  6 Afghanistan  Asia       1957</span>
+<span class="co">##  7 Cambodia     Asia       1977</span>
+<span class="co">##  8 Mozambique   Africa     1952</span>
+<span class="co">##  9 Sierra Leone Africa     1957</span>
+<span class="co">## 10 Burkina Faso Africa     1952</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Для впорядкування в порядку зменшення використовується функція <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> або знак <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code> перед змінною.</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country          continent  year lifeExp    pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Japan            Asia       2007    82.6 1.27e8    31656.</span>
-<span class="co">##  2 Hong Kong, China Asia       2007    82.2 6.98e6    39725.</span>
-<span class="co">##  3 Japan            Asia       2002    82   1.27e8    28605.</span>
-<span class="co">##  4 Iceland          Europe     2007    81.8 3.02e5    36181.</span>
-<span class="co">##  5 Switzerland      Europe     2007    81.7 7.55e6    37506.</span>
-<span class="co">##  6 Hong Kong, China Asia       2002    81.5 6.76e6    30209.</span>
-<span class="co">##  7 Australia        Oceania    2007    81.2 2.04e7    34435.</span>
-<span class="co">##  8 Spain            Europe     2007    80.9 4.04e7    28821.</span>
-<span class="co">##  9 Sweden           Europe     2007    80.9 9.03e6    33860.</span>
-<span class="co">## 10 Israel           Asia       2007    80.7 6.43e6    25523.</span>
-<span class="co">## # ... with 1,694 more rows</span>
+<span class="co">##    country       continent  year</span>
+<span class="co">##    &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Japan         Asia       2007</span>
+<span class="co">##  2 Hong Kong, C~ Asia       2007</span>
+<span class="co">##  3 Japan         Asia       2002</span>
+<span class="co">##  4 Iceland       Europe     2007</span>
+<span class="co">##  5 Switzerland   Europe     2007</span>
+<span class="co">##  6 Hong Kong, C~ Asia       2002</span>
+<span class="co">##  7 Australia     Oceania    2007</span>
+<span class="co">##  8 Spain         Europe     2007</span>
+<span class="co">##  9 Sweden        Europe     2007</span>
+<span class="co">## 10 Israel        Asia       2007</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span>
 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="op">-</span><span class="va">pop</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country continent  year lifeExp        pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 China   Asia       2007    73.0 1318683096     4959.</span>
-<span class="co">##  2 China   Asia       2002    72.0 1280400000     3119.</span>
-<span class="co">##  3 China   Asia       1997    70.4 1230075000     2289.</span>
-<span class="co">##  4 China   Asia       1992    68.7 1164970000     1656.</span>
-<span class="co">##  5 India   Asia       2007    64.7 1110396331     2452.</span>
-<span class="co">##  6 China   Asia       1987    67.3 1084035000     1379.</span>
-<span class="co">##  7 India   Asia       2002    62.9 1034172547     1747.</span>
-<span class="co">##  8 China   Asia       1982    65.5 1000281000      962.</span>
-<span class="co">##  9 India   Asia       1997    61.8  959000000     1459.</span>
-<span class="co">## 10 China   Asia       1977    64.0  943455000      741.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country continent  year</span>
+<span class="co">##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 China   Asia       2007</span>
+<span class="co">##  2 China   Asia       2002</span>
+<span class="co">##  3 China   Asia       1997</span>
+<span class="co">##  4 China   Asia       1992</span>
+<span class="co">##  5 India   Asia       2007</span>
+<span class="co">##  6 China   Asia       1987</span>
+<span class="co">##  7 India   Asia       2002</span>
+<span class="co">##  8 China   Asia       1982</span>
+<span class="co">##  9 India   Asia       1997</span>
+<span class="co">## 10 China   Asia       1977</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="tidy_select" class="section level3" number="2.3.3">
 <h3>
@@ -402,53 +426,60 @@
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 4</span>
-<span class="co">##    country     lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     lifeExp      pop</span>
+<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan    28.8  8425333</span>
+<span class="co">##  2 Afghanistan    30.3  9240934</span>
+<span class="co">##  3 Afghanistan    32.0 10267083</span>
+<span class="co">##  4 Afghanistan    34.0 11537966</span>
+<span class="co">##  5 Afghanistan    36.1 13079460</span>
+<span class="co">##  6 Afghanistan    38.4 14880372</span>
+<span class="co">##  7 Afghanistan    39.9 12881816</span>
+<span class="co">##  8 Afghanistan    40.8 13867957</span>
+<span class="co">##  9 Afghanistan    41.7 16317921</span>
+<span class="co">## 10 Afghanistan    41.8 22227415</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   1 more variable:</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Аналогічно, послідовність буде працювати і для назв стовпців:</p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 4</span>
-<span class="co">##    country     lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     lifeExp      pop</span>
+<span class="co">##    &lt;fct&gt;         &lt;dbl&gt;    &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan    28.8  8425333</span>
+<span class="co">##  2 Afghanistan    30.3  9240934</span>
+<span class="co">##  3 Afghanistan    32.0 10267083</span>
+<span class="co">##  4 Afghanistan    34.0 11537966</span>
+<span class="co">##  5 Afghanistan    36.1 13079460</span>
+<span class="co">##  6 Afghanistan    38.4 14880372</span>
+<span class="co">##  7 Afghanistan    39.9 12881816</span>
+<span class="co">##  8 Afghanistan    40.8 13867957</span>
+<span class="co">##  9 Afghanistan    41.7 16317921</span>
+<span class="co">## 10 Afghanistan    41.8 22227415</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   1 more variable:</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Функція <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> повертає всі стовпчики, але не буде повертати вже обрані стовпчики. Тому її можна використовувати для <strong>зміни позицій змінних</strong> в дата фреймі. Хоча в більшості випадків зручніше для таких задач використовувати функцію <code><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate()</a></code>.</p>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">continent</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    continent country      year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;     &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Asia      Afghanistan  1952    28.8  8425333      779.</span>
-<span class="co">##  2 Asia      Afghanistan  1957    30.3  9240934      821.</span>
-<span class="co">##  3 Asia      Afghanistan  1962    32.0 10267083      853.</span>
-<span class="co">##  4 Asia      Afghanistan  1967    34.0 11537966      836.</span>
-<span class="co">##  5 Asia      Afghanistan  1972    36.1 13079460      740.</span>
-<span class="co">##  6 Asia      Afghanistan  1977    38.4 14880372      786.</span>
-<span class="co">##  7 Asia      Afghanistan  1982    39.9 12881816      978.</span>
-<span class="co">##  8 Asia      Afghanistan  1987    40.8 13867957      852.</span>
-<span class="co">##  9 Asia      Afghanistan  1992    41.7 16317921      649.</span>
-<span class="co">## 10 Asia      Afghanistan  1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    continent country      year</span>
+<span class="co">##    &lt;fct&gt;     &lt;fct&gt;       &lt;int&gt;</span>
+<span class="co">##  1 Asia      Afghanistan  1952</span>
+<span class="co">##  2 Asia      Afghanistan  1957</span>
+<span class="co">##  3 Asia      Afghanistan  1962</span>
+<span class="co">##  4 Asia      Afghanistan  1967</span>
+<span class="co">##  5 Asia      Afghanistan  1972</span>
+<span class="co">##  6 Asia      Afghanistan  1977</span>
+<span class="co">##  7 Asia      Afghanistan  1982</span>
+<span class="co">##  8 Asia      Afghanistan  1987</span>
+<span class="co">##  9 Asia      Afghanistan  1992</span>
+<span class="co">## 10 Asia      Afghanistan  1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>За допомогою таких функцій як <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> можна <strong>відбирати стовпчики за певним патерном у назві</strong>.</p>
 <p>Виберемо стовпчики, назва яких починається на латинську літеру “<em>с</em>”</p>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
@@ -488,37 +519,39 @@
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"o"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 3</span>
-<span class="co">##    country     continent      pop</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;        &lt;int&gt;</span>
-<span class="co">##  1 Afghanistan Asia       8425333</span>
-<span class="co">##  2 Afghanistan Asia       9240934</span>
-<span class="co">##  3 Afghanistan Asia      10267083</span>
-<span class="co">##  4 Afghanistan Asia      11537966</span>
-<span class="co">##  5 Afghanistan Asia      13079460</span>
-<span class="co">##  6 Afghanistan Asia      14880372</span>
-<span class="co">##  7 Afghanistan Asia      12881816</span>
-<span class="co">##  8 Afghanistan Asia      13867957</span>
-<span class="co">##  9 Afghanistan Asia      16317921</span>
-<span class="co">## 10 Afghanistan Asia      22227415</span>
+<span class="co">##    country     continent     pop</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;       &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       8.43e6</span>
+<span class="co">##  2 Afghanistan Asia       9.24e6</span>
+<span class="co">##  3 Afghanistan Asia       1.03e7</span>
+<span class="co">##  4 Afghanistan Asia       1.15e7</span>
+<span class="co">##  5 Afghanistan Asia       1.31e7</span>
+<span class="co">##  6 Afghanistan Asia       1.49e7</span>
+<span class="co">##  7 Afghanistan Asia       1.29e7</span>
+<span class="co">##  8 Afghanistan Asia       1.39e7</span>
+<span class="co">##  9 Afghanistan Asia       1.63e7</span>
+<span class="co">## 10 Afghanistan Asia       2.22e7</span>
 <span class="co">## # ... with 1,694 more rows</span></code></pre></div>
 <p>Функція <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> використовується для відбору за регулярними виразами, з якими можна ознайомитися у книзі “Mastering Regular Expressions” <span class="citation">(<a href="references.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>.</p>
 <p>Відбір стовпчиків за їх типом даних виконується за допомогою функції <code><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if()</a></code>:</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">is.numeric</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 4</span>
-<span class="co">##     year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1  1952    28.8  8425333      779.</span>
-<span class="co">##  2  1957    30.3  9240934      821.</span>
-<span class="co">##  3  1962    32.0 10267083      853.</span>
-<span class="co">##  4  1967    34.0 11537966      836.</span>
-<span class="co">##  5  1972    36.1 13079460      740.</span>
-<span class="co">##  6  1977    38.4 14880372      786.</span>
-<span class="co">##  7  1982    39.9 12881816      978.</span>
-<span class="co">##  8  1987    40.8 13867957      852.</span>
-<span class="co">##  9  1992    41.7 16317921      649.</span>
-<span class="co">## 10  1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##     year lifeExp      pop</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;</span>
+<span class="co">##  1  1952    28.8  8425333</span>
+<span class="co">##  2  1957    30.3  9240934</span>
+<span class="co">##  3  1962    32.0 10267083</span>
+<span class="co">##  4  1967    34.0 11537966</span>
+<span class="co">##  5  1972    36.1 13079460</span>
+<span class="co">##  6  1977    38.4 14880372</span>
+<span class="co">##  7  1982    39.9 12881816</span>
+<span class="co">##  8  1987    40.8 13867957</span>
+<span class="co">##  9  1992    41.7 16317921</span>
+<span class="co">## 10  1997    41.8 22227415</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   1 more variable:</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="tidy_rename" class="section level3" number="2.3.4">
 <h3>
@@ -528,87 +561,104 @@
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">gapminder</span>, population <span class="op">=</span> <span class="va">pop</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country     continent  year lifeExp population gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8    8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3    9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0   10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0   11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1   13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4   14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9   12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8   13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7   16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8   22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;,</span>
+<span class="co">## #   population &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Замість старої назви можна вказати порядковий номер стовпчика:</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">gapminder</span>, population <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country     continent  year lifeExp population gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8    8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3    9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0   10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0   11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1   13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4   14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9   12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8   13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7   16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8   22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;,</span>
+<span class="co">## #   population &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Змінити назву стовпчика за певною умовою можна за допомогою функції <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with()</a></code>. Наприклад, записати всі назви великими літерами:</p>
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">toupper</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    COUNTRY     CONTINENT  YEAR LIFEEXP      POP GDPPERCAP</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    COUNTRY     CONTINENT  YEAR</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   LIFEEXP &lt;dbl&gt;, POP &lt;int&gt;,</span>
+<span class="co">## #   GDPPERCAP &lt;dbl&gt;</span></code></pre></div>
 <p>Стовпчики, які починаються на латинську “<em>c</em>” записати великими літерами:</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">toupper</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    COUNTRY     CONTINENT  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    COUNTRY     CONTINENT  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Більш складний варіант, але дуже часто вживаний — заміна певного символу або частини в назві. Такі варіанти зустрічаються, коли в назвах стовпчиків зустрічаються зайві “пробіли.” В нашому дата фреймі з цим все добре, але для прикладу замінемо всі “<em>co</em>” на “<em>CO</em>”</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"co"</span>, <span class="st">"CO"</span>, <span class="va">.x</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    COuntry     COntinent  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    COuntry     COntinent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="tidy_pipe" class="section level3" number="2.3.5">
 <h3>
@@ -620,20 +670,22 @@
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">country</span> <span class="op">==</span> <span class="st">"Ireland"</span><span class="op">)</span>, <span class="va">is.numeric</span><span class="op">)</span>, <span class="va">toupper</span><span class="op">)</span>
 <span class="co">## # A tibble: 12 x 4</span>
-<span class="co">##     YEAR LIFEEXP     POP GDPPERCAP</span>
-<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1  1952    66.9 2952156     5210.</span>
-<span class="co">##  2  1957    68.9 2878220     5599.</span>
-<span class="co">##  3  1962    70.3 2830000     6632.</span>
-<span class="co">##  4  1967    71.1 2900100     7656.</span>
-<span class="co">##  5  1972    71.3 3024400     9531.</span>
-<span class="co">##  6  1977    72.0 3271900    11151.</span>
-<span class="co">##  7  1982    73.1 3480000    12618.</span>
-<span class="co">##  8  1987    74.4 3539900    13873.</span>
-<span class="co">##  9  1992    75.5 3557761    17559.</span>
-<span class="co">## 10  1997    76.1 3667233    24522.</span>
-<span class="co">## 11  2002    77.8 3879155    34077.</span>
-<span class="co">## 12  2007    78.9 4109086    40676.</span></code></pre></div>
+<span class="co">##     YEAR LIFEEXP     POP</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;</span>
+<span class="co">##  1  1952    66.9 2952156</span>
+<span class="co">##  2  1957    68.9 2878220</span>
+<span class="co">##  3  1962    70.3 2830000</span>
+<span class="co">##  4  1967    71.1 2900100</span>
+<span class="co">##  5  1972    71.3 3024400</span>
+<span class="co">##  6  1977    72.0 3271900</span>
+<span class="co">##  7  1982    73.1 3480000</span>
+<span class="co">##  8  1987    74.4 3539900</span>
+<span class="co">##  9  1992    75.5 3557761</span>
+<span class="co">## 10  1997    76.1 3667233</span>
+<span class="co">## 11  2002    77.8 3879155</span>
+<span class="co">## 12  2007    78.9 4109086</span>
+<span class="co">## # ... with 1 more variable:</span>
+<span class="co">## #   GDPPERCAP &lt;dbl&gt;</span></code></pre></div>
 <p>Той самий код з використанням <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>:</p>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
@@ -641,20 +693,22 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename_with</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span>
 <span class="co">## # A tibble: 12 x 4</span>
-<span class="co">##     YEAR LIFEEXP     POP GDPPERCAP</span>
-<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1  1952    66.9 2952156     5210.</span>
-<span class="co">##  2  1957    68.9 2878220     5599.</span>
-<span class="co">##  3  1962    70.3 2830000     6632.</span>
-<span class="co">##  4  1967    71.1 2900100     7656.</span>
-<span class="co">##  5  1972    71.3 3024400     9531.</span>
-<span class="co">##  6  1977    72.0 3271900    11151.</span>
-<span class="co">##  7  1982    73.1 3480000    12618.</span>
-<span class="co">##  8  1987    74.4 3539900    13873.</span>
-<span class="co">##  9  1992    75.5 3557761    17559.</span>
-<span class="co">## 10  1997    76.1 3667233    24522.</span>
-<span class="co">## 11  2002    77.8 3879155    34077.</span>
-<span class="co">## 12  2007    78.9 4109086    40676.</span></code></pre></div>
+<span class="co">##     YEAR LIFEEXP     POP</span>
+<span class="co">##    &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;</span>
+<span class="co">##  1  1952    66.9 2952156</span>
+<span class="co">##  2  1957    68.9 2878220</span>
+<span class="co">##  3  1962    70.3 2830000</span>
+<span class="co">##  4  1967    71.1 2900100</span>
+<span class="co">##  5  1972    71.3 3024400</span>
+<span class="co">##  6  1977    72.0 3271900</span>
+<span class="co">##  7  1982    73.1 3480000</span>
+<span class="co">##  8  1987    74.4 3539900</span>
+<span class="co">##  9  1992    75.5 3557761</span>
+<span class="co">## 10  1997    76.1 3667233</span>
+<span class="co">## 11  2002    77.8 3879155</span>
+<span class="co">## 12  2007    78.9 4109086</span>
+<span class="co">## # ... with 1 more variable:</span>
+<span class="co">## #   GDPPERCAP &lt;dbl&gt;</span></code></pre></div>
 <p>Погодьтеся, що другий варіант читається значно легше. Пайп працює наступним чином: він приймає результат виконання попереднього коду та передає його в якості першого аргументу наступній функції, такий собі конвєер. При цьому кожну наступну функцію ми можемо писати з наступного рядка.</p>
 <p>Взагалі, з приводу <strong>оформлення tidy-коду</strong> бажано ознайомитися з матеріалами Хедлі Вікема <span class="citation">(<a href="references.html#ref-hadley_style" role="doc-biblioref">Wickham 2021</a>)</span></p>
 <p>Інколи результат виконання функції необхідно передавати не в перший аргумент наступної функції. В таких випадках можна використовувати крапку (<code>.</code>), щоб визначити, куди ми хочемо вставити результат попередньої функції.</p>
@@ -682,57 +736,67 @@
          country_group <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">GDP_billion</span> <span class="op">&gt;</span> <span class="fl">250</span>, <span class="st">"hight_gpd"</span>, <span class="st">"normal_gdp"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 <span class="co">## # A tibble: 142 x 8</span>
-<span class="co">##    country     continent  year lifeExp       pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       2007    43.8  31889923      975.</span>
-<span class="co">##  2 Albania     Europe     2007    76.4   3600523     5937.</span>
-<span class="co">##  3 Algeria     Africa     2007    72.3  33333216     6223.</span>
-<span class="co">##  4 Angola      Africa     2007    42.7  12420476     4797.</span>
-<span class="co">##  5 Argentina   Americas   2007    75.3  40301927    12779.</span>
-<span class="co">##  6 Australia   Oceania    2007    81.2  20434176    34435.</span>
-<span class="co">##  7 Austria     Europe     2007    79.8   8199783    36126.</span>
-<span class="co">##  8 Bahrain     Asia       2007    75.6    708573    29796.</span>
-<span class="co">##  9 Bangladesh  Asia       2007    64.1 150448339     1391.</span>
-<span class="co">## 10 Belgium     Europe     2007    79.4  10392226    33693.</span>
-<span class="co">## # ... with 132 more rows, and 2 more variables:</span>
-<span class="co">## #   GDP_billion &lt;dbl&gt;, country_group &lt;chr&gt;</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       2007</span>
+<span class="co">##  2 Albania     Europe     2007</span>
+<span class="co">##  3 Algeria     Africa     2007</span>
+<span class="co">##  4 Angola      Africa     2007</span>
+<span class="co">##  5 Argentina   Americas   2007</span>
+<span class="co">##  6 Australia   Oceania    2007</span>
+<span class="co">##  7 Austria     Europe     2007</span>
+<span class="co">##  8 Bahrain     Asia       2007</span>
+<span class="co">##  9 Bangladesh  Asia       2007</span>
+<span class="co">## 10 Belgium     Europe     2007</span>
+<span class="co">## # ... with 132 more rows, and 5</span>
+<span class="co">## #   more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;,</span>
+<span class="co">## #   GDP_billion &lt;dbl&gt;,</span>
+<span class="co">## #   country_group &lt;chr&gt;</span></code></pre></div>
 <p>Звертаю увагу, що останній стовпчик <em>country_group</em> був створений за допомогою попереднього нового стовпчика <em>GDP_billion</em>.</p>
 <p>Також можна проводити різноманітні маніпуляції з цілою низкою стовпчиків за допомогою функцій <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> та <code>where()</code>. Наприклад, розрахуємо натуральний логарифм до всіх числових стовпчиків:</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">log</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country     continent  year lifeExp   pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       7.58    3.36  15.9      6.66</span>
-<span class="co">##  2 Afghanistan Asia       7.58    3.41  16.0      6.71</span>
-<span class="co">##  3 Afghanistan Asia       7.58    3.47  16.1      6.75</span>
-<span class="co">##  4 Afghanistan Asia       7.58    3.53  16.3      6.73</span>
-<span class="co">##  5 Afghanistan Asia       7.59    3.59  16.4      6.61</span>
-<span class="co">##  6 Afghanistan Asia       7.59    3.65  16.5      6.67</span>
-<span class="co">##  7 Afghanistan Asia       7.59    3.69  16.4      6.89</span>
-<span class="co">##  8 Afghanistan Asia       7.59    3.71  16.4      6.75</span>
-<span class="co">##  9 Afghanistan Asia       7.60    3.73  16.6      6.48</span>
-<span class="co">## 10 Afghanistan Asia       7.60    3.73  16.9      6.45</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;dbl&gt;</span>
+<span class="co">##  1 Afghanistan Asia       7.58</span>
+<span class="co">##  2 Afghanistan Asia       7.58</span>
+<span class="co">##  3 Afghanistan Asia       7.58</span>
+<span class="co">##  4 Afghanistan Asia       7.58</span>
+<span class="co">##  5 Afghanistan Asia       7.59</span>
+<span class="co">##  6 Afghanistan Asia       7.59</span>
+<span class="co">##  7 Afghanistan Asia       7.59</span>
+<span class="co">##  8 Afghanistan Asia       7.59</span>
+<span class="co">##  9 Afghanistan Asia       7.60</span>
+<span class="co">## 10 Afghanistan Asia       7.60</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;dbl&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Або запишемо всі категоріальні змінні з великої літери:</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span>, <span class="va">toupper</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## # A tibble: 1,704 x 6</span>
-<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 AFGHANISTAN ASIA       1952    28.8  8425333      779.</span>
-<span class="co">##  2 AFGHANISTAN ASIA       1957    30.3  9240934      821.</span>
-<span class="co">##  3 AFGHANISTAN ASIA       1962    32.0 10267083      853.</span>
-<span class="co">##  4 AFGHANISTAN ASIA       1967    34.0 11537966      836.</span>
-<span class="co">##  5 AFGHANISTAN ASIA       1972    36.1 13079460      740.</span>
-<span class="co">##  6 AFGHANISTAN ASIA       1977    38.4 14880372      786.</span>
-<span class="co">##  7 AFGHANISTAN ASIA       1982    39.9 12881816      978.</span>
-<span class="co">##  8 AFGHANISTAN ASIA       1987    40.8 13867957      852.</span>
-<span class="co">##  9 AFGHANISTAN ASIA       1992    41.7 16317921      649.</span>
-<span class="co">## 10 AFGHANISTAN ASIA       1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;</span>
+<span class="co">##  1 AFGHANISTAN ASIA       1952</span>
+<span class="co">##  2 AFGHANISTAN ASIA       1957</span>
+<span class="co">##  3 AFGHANISTAN ASIA       1962</span>
+<span class="co">##  4 AFGHANISTAN ASIA       1967</span>
+<span class="co">##  5 AFGHANISTAN ASIA       1972</span>
+<span class="co">##  6 AFGHANISTAN ASIA       1977</span>
+<span class="co">##  7 AFGHANISTAN ASIA       1982</span>
+<span class="co">##  8 AFGHANISTAN ASIA       1987</span>
+<span class="co">##  9 AFGHANISTAN ASIA       1992</span>
+<span class="co">## 10 AFGHANISTAN ASIA       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>Для того, щоб залишити лише “новостворені” стовпчики використовується функція <code>tranmutate()</code>:</p>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op">%&gt;%</span> 
@@ -767,13 +831,16 @@
             count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">mean_life</span><span class="op">)</span>
 <span class="co">## # A tibble: 5 x 4</span>
-<span class="co">##   continent mean_life median_life count</span>
-<span class="co">##   &lt;fct&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;</span>
-<span class="co">## 1 Oceania        80.7        80.7     2</span>
-<span class="co">## 2 Europe         77.6        78.6    30</span>
-<span class="co">## 3 Americas       73.6        72.9    25</span>
-<span class="co">## 4 Asia           70.7        72.4    33</span>
-<span class="co">## 5 Africa         54.8        52.9    52</span></code></pre></div>
+<span class="co">##   continent mean_life</span>
+<span class="co">##   &lt;fct&gt;         &lt;dbl&gt;</span>
+<span class="co">## 1 Oceania        80.7</span>
+<span class="co">## 2 Europe         77.6</span>
+<span class="co">## 3 Americas       73.6</span>
+<span class="co">## 4 Asia           70.7</span>
+<span class="co">## 5 Africa         54.8</span>
+<span class="co">## # ... with 2 more variables:</span>
+<span class="co">## #   median_life &lt;dbl&gt;,</span>
+<span class="co">## #   count &lt;int&gt;</span></code></pre></div>
 </div>
 </div>
 <div id="r_mark" class="section level2" number="2.4">
@@ -826,7 +893,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-20.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

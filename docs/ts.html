@@ -137,20 +137,24 @@
   <span class="fu">as_tsibble</span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">continent</span><span class="op">)</span>,
              index <span class="op">=</span> <span class="va">year</span><span class="op">)</span>
 <span class="co">## # A tsibble: 1,704 x 6 [5Y]</span>
-<span class="co">## # Key:       country, continent [142]</span>
-<span class="co">##    country     continent  year lifeExp      pop gdpPercap</span>
-<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">##  1 Afghanistan Asia       1952    28.8  8425333      779.</span>
-<span class="co">##  2 Afghanistan Asia       1957    30.3  9240934      821.</span>
-<span class="co">##  3 Afghanistan Asia       1962    32.0 10267083      853.</span>
-<span class="co">##  4 Afghanistan Asia       1967    34.0 11537966      836.</span>
-<span class="co">##  5 Afghanistan Asia       1972    36.1 13079460      740.</span>
-<span class="co">##  6 Afghanistan Asia       1977    38.4 14880372      786.</span>
-<span class="co">##  7 Afghanistan Asia       1982    39.9 12881816      978.</span>
-<span class="co">##  8 Afghanistan Asia       1987    40.8 13867957      852.</span>
-<span class="co">##  9 Afghanistan Asia       1992    41.7 16317921      649.</span>
-<span class="co">## 10 Afghanistan Asia       1997    41.8 22227415      635.</span>
-<span class="co">## # ... with 1,694 more rows</span></code></pre></div>
+<span class="co">## # Key:       country, continent</span>
+<span class="co">## #   [142]</span>
+<span class="co">##    country     continent  year</span>
+<span class="co">##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;</span>
+<span class="co">##  1 Afghanistan Asia       1952</span>
+<span class="co">##  2 Afghanistan Asia       1957</span>
+<span class="co">##  3 Afghanistan Asia       1962</span>
+<span class="co">##  4 Afghanistan Asia       1967</span>
+<span class="co">##  5 Afghanistan Asia       1972</span>
+<span class="co">##  6 Afghanistan Asia       1977</span>
+<span class="co">##  7 Afghanistan Asia       1982</span>
+<span class="co">##  8 Afghanistan Asia       1987</span>
+<span class="co">##  9 Afghanistan Asia       1992</span>
+<span class="co">## 10 Afghanistan Asia       1997</span>
+<span class="co">## # ... with 1,694 more rows, and</span>
+<span class="co">## #   3 more variables:</span>
+<span class="co">## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;,</span>
+<span class="co">## #   gdpPercap &lt;dbl&gt;</span></code></pre></div>
 <p>В даному випадку, ми отримали <code>tsibble</code>, який містить дві ключові змінні та річні дані з інтервалом у 5 років (<code>5Y</code>).</p>
 <p>Або подивимось на датасет з генерації відновлювальної електроенергії в Україні у 2021 році:</p>
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
@@ -159,23 +163,27 @@
   <span class="fu">as_tsibble</span><span class="op">(</span>index <span class="op">=</span> <span class="va">Time</span><span class="op">)</span>
 
 <span class="va">ua_energy</span>
-<span class="co">## # A tsibble: 61,368 x 14 [1h] &lt;UTC&gt;</span>
-<span class="co">##    Time                  AES   TEC   VDE   TES   GES</span>
-<span class="co">##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">##  1 2014-01-01 01:00:00 10728  2825    50  6044  1809</span>
-<span class="co">##  2 2014-01-01 02:00:00 10606  2822    49  6038   863</span>
-<span class="co">##  3 2014-01-01 03:00:00 10515  2837    54  5865   355</span>
-<span class="co">##  4 2014-01-01 04:00:00 10475  2827    42  5524   185</span>
-<span class="co">##  5 2014-01-01 05:00:00 10427  2826    49  5506   274</span>
-<span class="co">##  6 2014-01-01 06:00:00 10473  2827    55  5346   434</span>
-<span class="co">##  7 2014-01-01 07:00:00 10469  2833    55  5343   193</span>
-<span class="co">##  8 2014-01-01 08:00:00 10493  2829    54  5324    72</span>
-<span class="co">##  9 2014-01-01 09:00:00 10479  2835   113  5366   557</span>
-<span class="co">## 10 2014-01-01 10:00:00 10455  2837   118  5431   862</span>
-<span class="co">## # ... with 61,358 more rows, and 8 more variables:</span>
-<span class="co">## #   GAES_GEN &lt;dbl&gt;, CONSUMPTION &lt;dbl&gt;, GAES_PUMP &lt;dbl&gt;,</span>
-<span class="co">## #   UK_BLR_RUS &lt;dbl&gt;, UK_EURO &lt;dbl&gt;, UK_MLD &lt;dbl&gt;,</span>
-<span class="co">## #   ...13 &lt;dbl&gt;, ...14 &lt;lgl&gt;</span></code></pre></div>
+<span class="co">## # A tsibble: 61,368 x 14 [1h]</span>
+<span class="co">## #   &lt;UTC&gt;</span>
+<span class="co">##    Time                  AES</span>
+<span class="co">##    &lt;dttm&gt;              &lt;dbl&gt;</span>
+<span class="co">##  1 2014-01-01 01:00:00 10728</span>
+<span class="co">##  2 2014-01-01 02:00:00 10606</span>
+<span class="co">##  3 2014-01-01 03:00:00 10515</span>
+<span class="co">##  4 2014-01-01 04:00:00 10475</span>
+<span class="co">##  5 2014-01-01 05:00:00 10427</span>
+<span class="co">##  6 2014-01-01 06:00:00 10473</span>
+<span class="co">##  7 2014-01-01 07:00:00 10469</span>
+<span class="co">##  8 2014-01-01 08:00:00 10493</span>
+<span class="co">##  9 2014-01-01 09:00:00 10479</span>
+<span class="co">## 10 2014-01-01 10:00:00 10455</span>
+<span class="co">## # ... with 61,358 more rows,</span>
+<span class="co">## #   and 12 more variables:</span>
+<span class="co">## #   TEC &lt;dbl&gt;, VDE &lt;dbl&gt;,</span>
+<span class="co">## #   TES &lt;dbl&gt;, GES &lt;dbl&gt;,</span>
+<span class="co">## #   GAES_GEN &lt;dbl&gt;,</span>
+<span class="co">## #   CONSUMPTION &lt;dbl&gt;,</span>
+<span class="co">## #   GAES_PUMP &lt;dbl&gt;, ...</span></code></pre></div>
 </div>
 <div id="ts_gaps" class="section level2" number="3.2">
 <h2>
@@ -238,7 +246,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-20.</p>
+    <p>"<strong>ОСНОВИ ПРОГНОЗУВАННЯ В R</strong>", автор Ігор Мірошниченко. <br>Останні зміни: 2021-10-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

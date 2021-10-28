@@ -5,7 +5,7 @@ editor_options:
 ---
 # Часові ряди та їх візуалізація {#ts}
 ***
-```{r setup-02, echo = FALSE, purl = FALSE, cache = TRUE, include=FALSE}
+```{r setup-02, purl = FALSE, cache = TRUE, include=FALSE}
 knitr::opts_knit$set(global.par = TRUE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, collapse = TRUE, out.width = '100%')
 library(fpp3)
